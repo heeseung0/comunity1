@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.heeseung'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
@@ -19,6 +19,11 @@ repositories {
 }
 
 dependencies {
+	// https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
+	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.2.2'
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.3.12.RELEASE'
+
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
