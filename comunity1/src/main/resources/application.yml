@@ -1,0 +1,15 @@
+server:
+  port: 8000
+
+spring:
+  mvc: static-path-pattern:/static/**
+
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://database-1.citk838y6vgk.ap-northeast-2.rds.amazonaws.com:3306/kb-project
+    username: admin
+    password: 1q2w3e4r
+
+mybatis:
+  mapper-locations:
+    - /mappers/*.xml
