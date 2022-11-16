@@ -2,7 +2,8 @@ server:
   port: 8000
 
 spring:
-  mvc: static-path-pattern:/static/**
+  mvc:
+    static-path-pattern: /static/**
 
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver

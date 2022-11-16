@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns: th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>커뮤니티 게시판 메인</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+<div class="container">
+    <aside class="aside-left">
+        <div class="member">
+            <form class="login-form">
+                <input class="login-form-input" type="username" name="username">
+                <input class="login-form-input" type="password" name="password">
+                <button class="login-form-btn-login" type="submit">로그인</button>
+                <a href="#" class="login-form-findAccount">아이디 / 비밀번호찾기</a>
+            </form>
+        </div>
+    </aside>
+    <div class="seung-wrapper">
+        <nav class="nav-main">
+            <li class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                   aria-expanded="false">서버알림</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#" class="dropdown-item">공지사항</a>
+                        <a href="#" class="dropdown-item">이벤트게시판</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">자주
+                    묻는 질문</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#" class="dropdown-item">자주 묻는 질문</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
+                   aria-expanded="false">커뮤니티</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#" class="dropdown-item">자유게시판</a>
+                        <a href="#" class="dropdown-item">파일게시판</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">포인트센터</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#" class="dropdown-item">포인트공지</a>
+                        <a href="#" class="dropdown-item">아이콘샵</a>
+                        <a href="#" class="dropdown-item">아이디컬러샵</a>
+                        <a href="#" class="dropdown-item">포인트복권</a>
+                        <a href="#" class="dropdown-item">포인트누적복권</a>
+                        <a href="#" class="dropdown-item">가위바위보</a>
+                        <a href="#" class="dropdown-item">출석체크</a>
+                    </li>
+                </ul>
+            </li>
+        </nav>
+        <div class="contents-wrapper">
+            <div class="wrapper-contents">
+                <div class="contents">
+                    <div class="widgetContainer">
+                        <a href="/Notice" class="widgetName">공지사항</a>
+                        <ul class="widgetNotice"></ul>
+                    </div>
+                    <div class="widgetContainer">
+                        <a href="/Event" class="widgetName">이벤트게시판</a>
+                        <ul class="widgetEvent"></ul>
+                    </div>
+                    <div class="widgetContainer">
+                        <a href="/FAQ" class="widgetName">자주 묻는 질문</a>
+                        <ul class="widgetFAQ"></ul>
+                    </div>
+                    <div class="widgetContainer">
+                        <a href="/Free" class="widgetName">자유게시판</a>
+                        <ul class="widgetFree"></ul>
+                    </div>
+                    <div class="widgetContainer">
+                        <a href="/File" class="widgetName">파일게시판</a>
+                        <ul class="widgetFile"></ul>
+                    </div>
+                    <div class="widgetContainer">
+                        <a href="/Point" class="widgetName">포인트공지</a>
+                        <ul class="widgetPoint"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-aside-right">
+                <aside class="aside-right">
+                    <div class="postList">
+                        <ul class="postList-nav" role="tablist">
+                            <li class="unactive" role="presentation">
+                                <a href="#" aria-controls="new_document" role="tab" data-toggle="tab"
+                                   aria-expanded="true">최신글</a>
+                            </li>
+                            <li class="unactive" role="presentation">
+                                <a href="#" aria-controls="new_document" role="tab" data-toggle="tab"
+                                   aria-expanded="false">최신댓글</a>
+                            </li>
+                            <li class="unactive" role="presentation">
+                                <a href="#" aria-controls="new_document" role="tab" data-toggle="tab"
+                                   aria-expanded="false">인기글</a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <div class="wrapper-footer">
+                <footer>
+
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
