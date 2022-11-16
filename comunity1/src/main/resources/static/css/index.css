@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     border: none;
     margin: 0px;
@@ -22,9 +26,24 @@ body {
 }
 
 .nav-main {
-    height: 200px;
+    position: absolute;
+    top: 40px;
 
-    background-color: aqua;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    height: 50px;
+
+    background-color: #141c1f;
+}
+
+.dropdown {
+    list-style: none;
+
+    margin-left: 20px;
+
+    color: white;
 }
 
 .aside-left {
@@ -41,17 +60,51 @@ body {
 }
 
 .contents-wrapper {
-    height: 650px;
+    height: 1100px;
 }
 
 .wrapper-contents {
-    position: relative;
+    position: absolute;
+    top: 100px;
     float: left;
 
     width: 680px;
     height: 950px;
 
     background-color: white;
+}
+
+.contents {
+    display: flex;
+    justify-content: center;
+    flex-flow: wrap;
+
+    padding-top: 50px;
+}
+
+.widgetContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 9px 12px;
+
+    border: 1px solid #dedede;
+    background-color: #fff;
+
+    width: 310px;
+    height: 220px;
+}
+
+.widgetContainer a {
+    margin-bottom: 5px;
+    padding-left: 15px;
+    padding-top: 3px;
+    color: #141c1f;
+    font-weight: bold;
+}
+
+.widgetContainer ul{
+    margin: 0px;
+    border-top: 2px solid #c00;
 }
 
 .wrapper-aside-right {
@@ -69,13 +122,12 @@ body {
 
 .wrapper-footer {
     position: absolute;
-    top: 1100px;
-    float: left;
+    bottom: 0px;
 
     border-top: 3px solid #333333;
 
     width: 680px;
-    height: 200px;
+    height: 150px;
 
     background-color: white;
 }
