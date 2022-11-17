@@ -10,11 +10,23 @@
 <div class="container">
     <aside class="aside-left">
         <div class="member">
+            <div class="aside-left-logo_div">
+                <a href="/"><img src="/static/images/main_logo.jpg"></a>
+            </div>
+            <div class="aside-left-span_div">
+                <span>MEMBER</span>
+            </div>
             <form class="login-form">
-                <input class="login-form-input" type="username" name="username">
-                <input class="login-form-input" type="password" name="password">
-                <button class="login-form-btn-login" type="submit">로그인</button>
-                <a href="#" class="login-form-findAccount">아이디 / 비밀번호찾기</a>
+                <div class="input-div">
+                    <input class="login-form-input" type="username" name="username" placeholder="아이디">
+                    <input class="login-form-input" type="password" name="password" placeholder="비밀번호">
+                </div>
+                <div class="button-div">
+                    <button class="login-form-btn-login" type="submit">로그인</button>
+                </div>
+                <div class="findAccount-div">
+                    <button class="login-form-findAccount" type="button">아이디 / 비밀번호찾기</button>
+                </div>
             </form>
         </div>
     </aside>
@@ -95,21 +107,104 @@
             </div>
             <div class="wrapper-aside-right">
                 <aside class="aside-right">
-                    <div class="postList">
+                    <div class="postList-div">
                         <ul class="postList-nav" role="tablist">
-                            <li class="unactive" role="presentation">
+                            <li class="postList active" role="presentation">
                                 <a href="#" aria-controls="new_document" role="tab" data-toggle="tab"
                                    aria-expanded="true">최신글</a>
                             </li>
-                            <li class="unactive" role="presentation">
+                            <li class="postList" role="presentation">
                                 <a href="#" aria-controls="new_document" role="tab" data-toggle="tab"
                                    aria-expanded="false">최신댓글</a>
                             </li>
-                            <li class="unactive" role="presentation">
+                            <li class="postList" role="presentation">
                                 <a href="#" aria-controls="new_document" role="tab" data-toggle="tab"
                                    aria-expanded="false">인기글</a>
                             </li>
                         </ul>
+                    </div>
+                    <div class="postList-tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="new_document">
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">글 목록1</a>
+                                </div>
+                            </div>
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">글 목록2</a>
+                                </div>
+                            </div>
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">글 목록3</a>
+                                </div>
+                            </div>
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">글 목록4</a>
+                                </div>
+                            </div>
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">글 목록5</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="new_comment">
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">댓글 목록1</a>
+                                </div>
+                            </div>
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">댓글 목록2</a>
+                                </div>
+                            </div>
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">댓글 목록3</a>
+                                </div>
+                            </div>
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">댓글 목록4</a>
+                                </div>
+                            </div>
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">댓글 목록5</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="pop_document">
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">인기글1</a>
+                                </div>
+                            </div>
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">인기글2</a>
+                                </div>
+                            </div>
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">인기글3</a>
+                                </div>
+                            </div>
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">인기글4</a>
+                                </div>
+                            </div>
+                            <div class="document_list_wrapper">
+                                <div class="document_content">
+                                    <a href="#">인기글5</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </aside>
             </div>
@@ -121,5 +216,6 @@
         </div>
     </div>
 </div>
+<script src="/static/js/indexFront.js"></script>
 </body>
 </html>
