@@ -16,16 +16,24 @@
             <div class="aside-left-span_div">
                 <span>MEMBER</span>
             </div>
-            <form class="login-form">
+            <th:block th:if="${error == 'auth'}">
+                <div class="alert-login">
+                    <span>입력하신 정보와 일치하는 회원이 없습니다.</span>
+                </div>
+            </th:block>
+            <form class="login-form" method="post" action="/member/login">
                 <div class="input-div">
-                    <input class="login-form-input" type="username" name="username" placeholder="아이디">
-                    <input class="login-form-input" type="password" name="password" placeholder="비밀번호">
+                    <input class="login-form-input" type="username" name="username" placeholder="아이디" required>
+                    <input class="login-form-input" type="password" name="password" placeholder="비밀번호" required>
                 </div>
                 <div class="button-div">
                     <button class="login-form-btn-login" type="submit">로그인</button>
                 </div>
                 <div class="findAccount-div">
                     <button class="login-form-findAccount" type="button">아이디 / 비밀번호찾기</button>
+                </div>
+                <div class="button-div">
+                    <button class="login-form-btn-newAccount" type="button">회원가입</button>
                 </div>
             </form>
         </div>

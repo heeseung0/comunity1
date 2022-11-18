@@ -1,12 +1,15 @@
 window.addEventListener("load", () => {
     const postList_Nav = document.querySelectorAll(".postList");
     const tab_pane = document.querySelectorAll(".tab-pane");
+    const findAccount = document.querySelector(".login-form-findAccount");
+    const newAccount = document.querySelector(".login-form-btn-newAccount");
+
 
     postList_Nav.forEach((list, index) => {
         list.addEventListener("mouseover", () => {
             //이하 클래스 초기화
             postList_Nav.forEach(inner_list => {
-               inner_list.setAttribute("class", "postList");
+                inner_list.setAttribute("class", "postList");
             });
 
             tab_pane.forEach(pane => {
@@ -14,8 +17,17 @@ window.addEventListener("load", () => {
             });
 
             //이하 active 클래스 추가
-            list.setAttribute("class","postList active");
-            tab_pane[index].setAttribute("class","tab-pane active");
+            list.setAttribute("class", "postList active");
+            tab_pane[index].setAttribute("class", "tab-pane active");
         });
     });
+
+    findAccount.onclick = () => {
+        location.href = "/member/findAccount"
+    }
+
+    newAccount.onclick = () => {
+        location.href = "/member/newAccount"
+    }
+
 })
