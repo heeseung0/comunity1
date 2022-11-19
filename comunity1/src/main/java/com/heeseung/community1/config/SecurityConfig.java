@@ -1,6 +1,6 @@
-package com.heeseung.comunity1.config;
+package com.heeseung.community1.config;
 
-import com.heeseung.comunity1.security.AuthFailureHandler;
+import com.heeseung.community1.security.AuthFailureHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -37,6 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/member/login")
                 .loginProcessingUrl("/member/login")
                 .failureHandler(new AuthFailureHandler())
-                .defaultSuccessUrl("/index");
+                .defaultSuccessUrl("/");
     }
 }

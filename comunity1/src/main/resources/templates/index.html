@@ -21,22 +21,45 @@
                     <span>입력하신 정보와 일치하는 회원이 없습니다.</span>
                 </div>
             </th:block>
-            <form class="login-form" method="post" action="/member/login">
-                <div class="input-div">
-                    <input class="login-form-input" type="username" name="username" placeholder="아이디" required>
-                    <input class="login-form-input" type="password" name="password" placeholder="비밀번호" required>
-                </div>
-                <div class="button-div">
-                    <button class="login-form-btn-login" type="submit">로그인</button>
-                </div>
-                <div class="findAccount-div">
-                    <button class="login-form-findAccount" type="button">아이디 / 비밀번호찾기</button>
-                </div>
-                <div class="button-div">
-                    <button class="login-form-btn-newAccount" type="button">회원가입</button>
-                </div>
-            </form>
+
+            <!-- 이하는 js로 처리 (불러올때 짧게나마 잔상?같은게 보여서) -->
+
+<!--            <div class="aside-left-logo_div">-->
+<!--                <a href="/"><img src="/static/images/main_logo.jpg"></a>-->
+<!--            </div>-->
+<!--            <div class="aside-left-span_div">-->
+<!--                <span>MEMBER</span>-->
+<!--            </div>-->
+<!--            <th:block th:if="${error == 'auth'}">-->
+<!--                <div class="alert-login">-->
+<!--                    <span>입력하신 정보와 일치하는 회원이 없습니다.</span>-->
+<!--                </div>-->
+<!--            </th:block>-->
+<!--            <form class="login-form" method="post" action="/member/login">-->
+<!--                <div class="input-div">-->
+<!--                    <input class="login-form-input" type="text" name="username" placeholder="아이디" required>-->
+<!--                    <input class="login-form-input" type="password" name="password" placeholder="비밀번호" required>-->
+<!--                </div>-->
+<!--                <div class="button-div">-->
+<!--                    <button class="login-form-btn-login" type="submit">로그인</button>-->
+<!--                </div>-->
+<!--                <div class="findAccount-div">-->
+<!--                    <button class="login-form-findAccount" type="button">아이디 / 비밀번호찾기</button>-->
+<!--                </div>-->
+<!--                <div class="button-div">-->
+<!--                    <button class="login-form-btn-newAccount" type="button">회원가입</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--            <div class="login-success hidden">-->
+<!--                <span class="login-username">OO</span><span class="login-username2">님 반갑습니다.</span>-->
+<!--                <div class="button-div">-->
+<!--                    <button class="login-btn-logout" type="button" onclick="location.href='/logout'">로그아웃</button>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
         </div>
+        <script src="/static/js/getLogin.js"></script>
     </aside>
     <div class="seung-wrapper">
         <nav class="nav-main">

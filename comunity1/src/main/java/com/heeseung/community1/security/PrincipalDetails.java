@@ -1,6 +1,6 @@
-package com.heeseung.comunity1.security;
+package com.heeseung.community1.security;
 
-import com.heeseung.comunity1.domain.Account;
+import com.heeseung.community1.domain.Account;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +9,11 @@ import java.util.Collection;
 
 @Data
 public class PrincipalDetails implements UserDetails {
-    private Account user;
+    private Account account;
+
+    public PrincipalDetails(Account account){
+        this.account = account;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -18,12 +22,12 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return account.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return account.getUsername();
     }
 
     @Override

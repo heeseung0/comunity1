@@ -1,4 +1,4 @@
-package com.heeseung.comunity1;
+package com.heeseung.community1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

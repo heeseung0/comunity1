@@ -1,0 +1,41 @@
+.div-account {
+    position: absolute;
+    top: 300px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.div-account > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-input, .account-submit {
+    display: block;
+}
+
+.account-input {
+    padding: 1px 0px 1px 7px;
+    width: 210px;
+    height: 30px;
+}
+
+.account-submit {
+    margin-top: 10px;
+    border: 1px solid #009900;
+    border-radius: 5px;
+
+    width: 70px;
+    height: 35px;
+
+    color: #dedede;
+    background-color: #007700;
+}
+
+.alert-validation > span {
+    padding: 2px 5px;
+    color: orangered;
+    font-size: 11px;
+}

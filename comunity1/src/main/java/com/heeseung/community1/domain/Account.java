@@ -1,4 +1,4 @@
-package com.heeseung.comunity1.domain;
+package com.heeseung.community1.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.heeseung.comunity1.security;
+package com.heeseung.community1.security;
 
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.CredentialsExpiredException;

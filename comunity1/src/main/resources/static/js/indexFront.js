@@ -1,9 +1,6 @@
 window.addEventListener("load", () => {
     const postList_Nav = document.querySelectorAll(".postList");
     const tab_pane = document.querySelectorAll(".tab-pane");
-    const findAccount = document.querySelector(".login-form-findAccount");
-    const newAccount = document.querySelector(".login-form-btn-newAccount");
-
 
     postList_Nav.forEach((list, index) => {
         list.addEventListener("mouseover", () => {
@@ -22,12 +19,4 @@ window.addEventListener("load", () => {
         });
     });
 
-    findAccount.onclick = () => {
-        location.href = "/member/findAccount"
-    }
-
-    newAccount.onclick = () => {
-        location.href = "/member/newAccount"
-    }
-
-})
+});

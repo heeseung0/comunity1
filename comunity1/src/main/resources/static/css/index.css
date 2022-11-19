@@ -15,6 +15,10 @@ body {
     background-color: #141c1f;
 }
 
+.hidden {
+    display: none;
+}
+
 .container {
     display: block;
 }
@@ -37,7 +41,7 @@ body {
 
     height: 50px;
 
-    background-color: rgb(51,51,51);
+    background-color: rgb(51, 51, 51);
 }
 
 .dropdown {
@@ -159,6 +163,36 @@ body {
     background-color: #009900;
 }
 
+.login-success {
+    justify-content: center;
+    text-align: center;
+}
+
+.login-success > .button-div {
+    margin-top: 10px;
+}
+
+.login-username {
+    color: #009900;
+}
+
+.login-username2 {
+    color: #335533;
+}
+
+.login-btn-logout {
+    border: 1px solid #cccccc;
+
+    width: 100%;
+    height: 100%;
+
+    color: #dedede;
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: #cc0000;
+}
+
 .contents-wrapper {
     height: 1100px;
 }
@@ -202,7 +236,7 @@ body {
     font-weight: bold;
 }
 
-.widgetContainer ul{
+.widgetContainer ul {
     margin: 0px;
     border-top: 2px solid #c00;
 }
@@ -284,4 +318,8 @@ body {
     height: 150px;
 
     background-color: white;
+}
+
+.alert-login > span {
+    color: orangered;
 }
