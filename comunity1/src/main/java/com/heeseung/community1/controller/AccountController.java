@@ -4,11 +4,10 @@ import com.heeseung.community1.dto.RegisterReqDto;
 import com.heeseung.community1.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.juli.logging.Log;
 import org.springframework.lang.Nullable;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,49 +22,57 @@ import java.util.List;
 public class AccountController {
 
     private final AccountService accountService;
+    private final AuthenticationManager authenticationManager;
 
-    @GetMapping ("/login")
+    @GetMapping("/login")
     public String login(Model model,
                         @RequestParam @Nullable String username,
-                        @RequestParam @Nullable String error){
+                        @RequestParam @Nullable String error) {
         model.addAttribute("username", username == null ? "" : username);
         model.addAttribute("error", error == null ? "" : error);
         return "index";
     }
 
-    @GetMapping ("/newAccount")
+    @GetMapping("/newAccount")
     public String newAccount(Model model,
                              @RequestParam @Nullable String username,
-                             @RequestParam @Nullable String error){
+                             @RequestParam @Nullable String error) {
         model.addAttribute("username", username == null ? "" : username);
         model.addAttribute("error", error == null ? "" : error);
         return "member/newAccount";
     }
 
     @PostMapping("/newAccount")
-    public String accountRegister (RegisterReqDto registerReqDto,
-                                   Model model,
-                                   @RequestParam @Nullable String username,
-                                   @RequestParam @Nullable String error) throws Exception{
+    public String accountRegister(RegisterReqDto registerReqDto,
+                                  Model model,
+                                  @RequestParam @Nullable String username,
+                                  @RequestParam @Nullable String error) throws Exception {
+        Boolean autoLogin = true;
+        String rawUsername = registerReqDto.getUsername();
+        String rawPassword = registerReqDto.getPassword();
+
         int result = accountService.register(registerReqDto);
 
         model.addAttribute("username", username == null ? "" : username);
 
-        if(result != 0) {
-            switch(result){
-                case 1: {
-                    model.addAttribute("error", "validation_duplicated");
-                    log.error("register error : duplicated");
+        if (result != 0) {
+            switch (result) {
+                case 0: {   //success
                     break;
                 }
-                case 2: {
+                case 1: {
                     model.addAttribute("error", "validation_username");
                     log.warn("register error : validation_username");
                     break;
                 }
-                case 3: {
+                case 2: {
                     model.addAttribute("error", "validation_password");
                     log.warn("register error : validation_password");
+                    break;
+                }
+                case 3: {
+                    model.addAttribute("error", "validation_duplicated");
+                    log.error("register error : duplicated");
                     break;
                 }
                 case 100: {
@@ -79,14 +86,28 @@ public class AccountController {
             log.info("\t>> password : " + registerReqDto.getPassword());
         }
 
-        //자동 로그인 로직
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                registerReqDto.toEntity().getUsername(),
-                registerReqDto.toEntity().getPassword(),
-                List.of(new SimpleGrantedAuthority("ROLE_USER")));
-        SecurityContext context = SecurityContextHolder.getContext();
-        context.setAuthentication(token);
+        if (autoLogin) {
+            //자동 로그인 로직
+            /*
+                1. username과 password로 UsernamePasswordAuthenticationToken 인스턴스 생성(토큰)
+                2. 위 토큰은 검증을 위해 AuthenticationManager의 인스턴스로 전달
+                3. AuthenticationManager는 인증에 성공하면 Authentication 인스턴스를 리턴
+                4. 위 Authentication을 SecurityContextHolder.getContext().setAuthentication()으로 set
+             */
+            //로그인 인증에 필요한 토큰 얻어옴
+            //원시 비밀번호가 없으면 토큰 인증에서 오류가 남(rawPassword)
+            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+                    rawUsername,
+                    rawPassword);
 
-        return "member/newAccount";
+            //AuthenticationManager에 로그인 함수 호출
+            //AuthenticationManager을 사용하기 위해서는 Bean으로 등록(config - SecurityConfig)
+            Authentication authentication = authenticationManager.authenticate(token);
+
+            //로그인 토큰 저장(세션 등록)
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+        }
+
+        return "index";
     }
 }

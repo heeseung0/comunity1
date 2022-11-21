@@ -14,27 +14,27 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public int register(RegisterReqDto registerReqDto) throws Exception {
         Account account = registerReqDto.toEntity();
-        int result = 0;
 
         //Validation check
-        if(registerReqDto.getUsername().length() < 4 || 12 < registerReqDto.getUsername().length()){
-            return 2;   //validation_username
-        }else if(registerReqDto.getPassword().length() < 4 || 20 < registerReqDto.getPassword().length()){
-            return 3;   //validation_password
+        if (registerReqDto.getUsername().length() < 4 || 12 < registerReqDto.getUsername().length()) {
+            return 1;   //validation_username
+        } else if (registerReqDto.getPassword().length() < 4 || 20 < registerReqDto.getPassword().length()) {
+            return 2;   //validation_password
         }
 
-        result = accountRepository.isDuplicate(account);
-
-        if(result == 0){
-            result = accountRepository.register(account);
-        }else{
-            return 1;   //duplicated
+        if (accountRepository.isDuplicate(account) != 0) {
+            return 3;   //duplicated
+        } else {
+            if (accountRepository.register(account) == 1) {
+                return 0;
+            } else {
+                return 100; //sql error
+            }
         }
+    }
 
-        if (result != 1) {
-            return 100;   //sql error
-        }
-
-        return 0;
+    @Override
+    public int leave(String username) throws Exception {
+        return accountRepository.leave(username);
     }
 }

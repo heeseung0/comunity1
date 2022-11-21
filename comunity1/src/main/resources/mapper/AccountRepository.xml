@@ -3,31 +3,33 @@
 <mapper namespace="com.heeseung.community1.repository.AccountRepository">
 
     <insert id="register">
-        insert into account values(
-                                   0,
-                                   #{username},
-                                   #{password},
-                                   #{role},
-                                   now(),
-                                   now()
-                                  )
+        insert into account
+        values (0,
+                #{username},
+                #{password},
+                #{role},
+                now(),
+                now())
     </insert>
     <select id="isDuplicate" resultType="java.lang.Integer">
-        select count(*) from account where account.username = #{username}
+        select count(*)
+        from account
+        where account.username = #{username}
     </select>
     <select id="getAccount" resultType="com.heeseung.community1.domain.Account">
-        select
-            account.id,
-            account.username,
-            account.password,
-            account.role,
-            account.create_date,
-            account.update_date
-        from
-            account
-        where
-            account.username = #{username}
+        select account.id,
+               account.username,
+               account.password,
+               account.role,
+               account.create_date,
+               account.update_date
+        from account
+        where account.username = #{username}
     </select>
-
+    <delete id="leave">
+        delete
+        from account
+        where username = #{username}
+    </delete>
 
 </mapper>

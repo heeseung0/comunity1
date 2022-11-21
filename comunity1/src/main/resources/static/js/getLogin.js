@@ -1,8 +1,4 @@
 window.addEventListener('load', () => {
-    const loginForm = document.querySelector(".login-form");
-    const loginSuccess = document.querySelector(".login-success");
-    const login_username = document.querySelector(".login-username");
-
     const member = document.querySelector(".member");
 
     $.ajax({
@@ -11,7 +7,7 @@ window.addEventListener('load', () => {
         url: "/api/account/getLogin",
         success: (response) => {
             console.log(response);
-            if (response.data == null) {
+            if (response.data == null || response.data == "anonymousUser") {
                 let error = '1';
                 member.innerHTML += `
                     <form class="login-form" method="post" action="/member/login">
@@ -30,7 +26,7 @@ window.addEventListener('load', () => {
                         </div>
                     </form>                 
                 `;
-            } else {
+            } else if (response.data.account.role == 1) {
                 member.innerHTML = `
                     <div class="aside-left-logo_div">
                         <a href="/"><img src="/static/images/main_logo.jpg"></a>
@@ -43,6 +39,27 @@ window.addEventListener('load', () => {
                         <div class="button-div">
                             <button class="login-btn-logout" type="button" onclick="location.href='/logout'">로그아웃</button>
                         </div>
+                        <div class="button-div">
+                            <button class="login-btn-AccountLeave" type="button" onclick="leave()">회원탈퇴</button>
+                        </div>
+                    </div>                    
+                `;
+            } else if (response.data.account.role == 3) {
+                member.innerHTML = `
+                    <div class="aside-left-logo_div">
+                        <a href="/"><img src="/static/images/main_logo.jpg"></a>
+                    </div>
+                    <div class="aside-left-span_div">
+                        <span>MEMBER</span>
+                    </div>
+                    <div class="login-success">
+                        <span class="login-username">${response.data.username}</span><span class="login-username2"> (관리자 계정)</span>
+                        <div class="button-div">
+                            <button class="login-btn-logout" type="button" onclick="location.href='/logout'">로그아웃</button>
+                        </div>
+                        <div class="button-div">
+                            <button class="login-btn-AccountLeave" type="button" onclick="leave()">회원정보</button>
+                        </div>
                     </div>                    
                 `;
             }
@@ -51,3 +68,19 @@ window.addEventListener('load', () => {
         }
     });
 });
+
+function leave() {
+    if (window.confirm('정말로 탈퇴 하시겠습니까?')) {
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "/api/account/leave",
+            success: (response) => {
+                alert('탈퇴가 완료되었습니다.');
+                location.href = '/logout';
+            }, error: (error) => {
+                console.log(error);
+            }
+        })
+    }
+}
