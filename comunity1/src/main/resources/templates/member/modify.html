@@ -28,13 +28,7 @@
                         <span>비밀번호는 4~20글자로 구성되어야합니다.</span>
                     </div>
                 </th:block>
-                <button type="submit" class="account-submit">가입하기</button>
-                <th:block th:if="${error == 'error_server'}">
-                    <div class="alert-validation">
-                        <span>서버 에러입니다.</span>
-                        <span>관리자에게 문의바랍니다.</span>
-                    </div>
-                </th:block>
+                <button type="submit" class="account-submit">수정하기</button>
             </form>
         </div>
         <div th:replace="/index :: .wrapper-aside-right"></div>

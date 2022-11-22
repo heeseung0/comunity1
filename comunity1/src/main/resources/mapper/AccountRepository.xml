@@ -33,7 +33,7 @@
     </delete>
     <update id="modify">
         UPDATE account
-        SET PASSWORD = #{password}, update_data = now()
+        SET password = #{password}, update_date = now()
         WHERE username = #{username}
     </update>
 </mapper>

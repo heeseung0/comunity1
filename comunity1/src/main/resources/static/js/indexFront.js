@@ -18,5 +18,8 @@ window.addEventListener("load", () => {
             tab_pane[index].setAttribute("class", "tab-pane active");
         });
     });
-
 });
+
+function logout() {
+    location.href="/logout";
+}

@@ -52,6 +52,7 @@ public class AccountServiceImpl implements AccountService {
         }
 
         accountRepository.modify(modifyReqDto.toEntity());
+
         return 0;
     }
 }
