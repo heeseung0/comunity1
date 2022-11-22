@@ -193,6 +193,19 @@ body {
     background-color: #d58512;
 }
 
+.login-btn-modify {
+    border: 1px solid white;
+
+    width: 100%;
+    height: 100%;
+
+    color: #333333;
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: lightgray;
+}
+
 .login-btn-AccountLeave {
     border: 1px solid #cccccc;
 

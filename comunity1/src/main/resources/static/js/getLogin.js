@@ -40,6 +40,9 @@ window.addEventListener('load', () => {
                             <button class="login-btn-logout" type="button" onclick="location.href='/logout'">로그아웃</button>
                         </div>
                         <div class="button-div">
+                            <button class="login-btn-modify" type="button" onclick="location.href='/member/modify'">비밀번호 변경</button>
+                        </div>
+                        <div class="button-div">
                             <button class="login-btn-AccountLeave" type="button" onclick="leave()">회원탈퇴</button>
                         </div>
                     </div>                    
@@ -56,6 +59,9 @@ window.addEventListener('load', () => {
                         <span class="login-username">${response.data.username}</span><span class="login-username2"> (관리자 계정)</span>
                         <div class="button-div">
                             <button class="login-btn-logout" type="button" onclick="location.href='/logout'">로그아웃</button>
+                        </div>
+                        <div class="button-div">
+                            <button class="login-btn-modify" type="button" onclick="location.href='/member/modify'">비밀번호 변경</button>
                         </div>
                         <div class="button-div">
                             <button class="login-btn-AccountLeave" type="button" onclick="leave()">회원정보</button>

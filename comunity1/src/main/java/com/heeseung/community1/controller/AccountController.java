@@ -1,6 +1,8 @@
 package com.heeseung.community1.controller;
 
+import com.heeseung.community1.dto.ModifyReqDto;
 import com.heeseung.community1.dto.RegisterReqDto;
+import com.heeseung.community1.security.PrincipalDetails;
 import com.heeseung.community1.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,12 +10,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,9 +35,9 @@ public class AccountController {
     }
 
     @GetMapping("/newAccount")
-    public String newAccount(Model model,
-                             @RequestParam @Nullable String username,
-                             @RequestParam @Nullable String error) {
+    public String accountRegister(Model model,
+                                  @RequestParam @Nullable String username,
+                                  @RequestParam @Nullable String error) {
         model.addAttribute("username", username == null ? "" : username);
         model.addAttribute("error", error == null ? "" : error);
         return "member/newAccount";
@@ -45,8 +46,7 @@ public class AccountController {
     @PostMapping("/newAccount")
     public String accountRegister(RegisterReqDto registerReqDto,
                                   Model model,
-                                  @RequestParam @Nullable String username,
-                                  @RequestParam @Nullable String error) throws Exception {
+                                  @RequestParam @Nullable String username) throws Exception {
         Boolean autoLogin = true;
         String rawUsername = registerReqDto.getUsername();
         String rawPassword = registerReqDto.getPassword();
@@ -110,4 +110,30 @@ public class AccountController {
 
         return "index";
     }
+
+    @GetMapping("/modify")
+    public String modify(Model model,
+                         @RequestParam @Nullable String error) {
+        model.addAttribute("error", error == null ? "" : error);
+        return "member/modify";
+    }
+
+    @PostMapping("/modify")
+    public String modify(Model model,
+                         ModifyReqDto modifyReqDto,
+                         @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
+        modifyReqDto.setUsername(principalDetails.getUsername());
+        switch(accountService.modify(modifyReqDto)){
+            case 0:
+                break;
+            case 1:
+                model.addAttribute("error", "validation_password_now");
+                break;
+        }
+
+
+        model.addAttribute("error", error == null ? "" : error);
+        return "member/modify";
+    }
+
 }

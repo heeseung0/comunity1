@@ -1,6 +1,7 @@
 package com.heeseung.community1.service;
 
 import com.heeseung.community1.domain.Account;
+import com.heeseung.community1.dto.ModifyReqDto;
 import com.heeseung.community1.dto.RegisterReqDto;
 import com.heeseung.community1.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,5 +37,21 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public int leave(String username) throws Exception {
         return accountRepository.leave(username);
+    }
+
+    @Override
+    public int modify(ModifyReqDto modifyReqDto) throws Exception {
+        String pd_now = modifyReqDto.getPassword_now();
+        String pd_new = modifyReqDto.getPassword_new();
+
+        //Validation check
+        if (modifyReqDto.getPassword_now().length() < 4 || 20 < modifyReqDto.getPassword_now().length()) {
+            return 1;   //validation_password_now
+        } else if (modifyReqDto.getPassword_new().length() < 4 || 20 < modifyReqDto.getPassword_new().length()) {
+            return 2;   //validation_password_new
+        }
+
+        accountRepository.modify(modifyReqDto.toEntity());
+        return 0;
     }
 }

@@ -31,5 +31,9 @@
         from account
         where username = #{username}
     </delete>
-
+    <update id="modify">
+        UPDATE account
+        SET PASSWORD = #{password}, update_data = now()
+        WHERE username = #{username}
+    </update>
 </mapper>
