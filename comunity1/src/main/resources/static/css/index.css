@@ -225,8 +225,11 @@ body {
 
 .wrapper-contents {
     position: absolute;
-    top: 100px;
+    top: 120px;
     float: left;
+
+    border: 1px solid #555555;
+    padding: 15px;
 
     width: 680px;
     height: 950px;
@@ -239,7 +242,7 @@ body {
     justify-content: center;
     flex-flow: wrap;
 
-    padding-top: 50px;
+    padding-top: 10px;
 }
 
 .widgetContainer {
@@ -250,8 +253,8 @@ body {
     border: 1px solid #dedede;
     background-color: #fff;
 
-    width: 310px;
-    height: 220px;
+    width: 290px;
+    height: 250px;
 }
 
 .widgetContainer a {
@@ -339,9 +342,11 @@ body {
     bottom: 0px;
 
     border-top: 3px solid #333333;
+    border-left: 1px solid #333333;
+    border-right: 1px solid #333333;
 
     width: 680px;
-    height: 150px;
+    height: 100px;
 
     background-color: white;
 }
