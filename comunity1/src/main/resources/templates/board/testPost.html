@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns: th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/newAccount.css">
+    <link rel="stylesheet" href="/static/css/board.css">
+</head>
+<body>
+<div class="container">
+    <aside th:replace="/index :: .aside-left"></aside>
+    <div class="seung-wrapper">
+        <nav th:replace="/index :: .nav-main"></nav>
+        <div class="wrapper-contents">
+            <!-- 여기부터 페이지마다 다름 -->
+            <div class="board_header">
+                <h3 class="header_title">공지사항</h3>
+            </div>
+            <form action="testPost" method="post">
+
+            </form>
+            <!-- 여기까지 페이지마다 다름 -->
+        </div>
+        <div th:replace="/index :: .wrapper-aside-right"></div>
+    </div>
+</div>
+<script src="/static/js/indexFront.js"></script>
+</body>
+</html>

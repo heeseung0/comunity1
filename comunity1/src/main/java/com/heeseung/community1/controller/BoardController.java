@@ -16,4 +16,9 @@ public class BoardController {
     public String noticePost(@PathVariable String postNum){
         return "board/noticePost";
     }
+
+    @GetMapping("test")
+    public String test(){
+        return "board/testPost";
+    }
 }
