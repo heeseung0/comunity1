@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns: th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/newAccount.css">
+    <link rel="stylesheet" href="/static/css/board.css">
+    <link rel="stylesheet" href="/static/css/boardPost.css">
+</head>
+<body>
+<div class="container">
+    <aside th:replace="/index :: .aside-left"></aside>
+    <div class="seung-wrapper">
+        <nav th:replace="/index :: .nav-main"></nav>
+        <div class="wrapper-contents">
+            <!-- 여기부터 페이지마다 다름 -->
+            <div class="board_header">
+                <h3 class="header_title"><a href="Notice">공지사항</a></h3>
+            </div>
+            <div class="board_read">
+                <div class="read_header">
+                    <div class="header">
+                        <h1 class="title"><span>글 제목</span></h1>
+                        <div class="nick_area">닉네임</div>
+                    </div>
+                    <div class="footer">
+                        <a class="link" href="/Notice/1">127.0.0.1:8000/Notice/1</a>
+                        <p class="sum">
+                            <span class="read">조회 수 <span class="num">100</span></span>
+                            <span class="vote">추천 수 <span class="num">+10</span></span>
+                            <span class="time">등록일 <span class="num">2022.11.24 16:59</span></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="read_body">
+                    <p>아마도 내용들이 올 것입니다.</p>
+                    <p>&nbsp;</p>
+                    <p>여기에 뭘 쓸지 모르겠다.</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>한 줄 바꿈은???</p>
+                    <p>&nbsp;</p>
+                    <p>끝</p>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="read_footer"></div>
+            </div>
+            <div class="feedback">
+
+            </div>
+            <table class="board_body_table">
+                <thead>
+                <tr>
+                    <th scope="col">번호</th>
+                    <th scope="col">분류</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">글쓴이</th>
+                    <th scope="col">날짜</th>
+                    <th scope="col">조회수</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="notice"><span>공지</span></td>
+                    <td class="category_notice"><span>알림</span></td>
+                    <td class="title"><span>공지사항 테스트 1번</span></td>
+                    <td class="author"><span>test</span></td>
+                    <td class="time"><span>2022.11.23</span></td>
+                    <td class="readNum"><span>1</span></td>
+                </tr>
+                <tr>
+                    <td class="notice"><span>공지</span></td>
+                    <td class="category_notice"><span>알림</span></td>
+                    <td class="title"><span>공지사항 테스트 2번</span></td>
+                    <td class="author"><span>test</span></td>
+                    <td class="time"><span>2022.11.23</span></td>
+                    <td class="readNum"><span>10</span></td>
+                </tr>
+                <tr>
+                    <td class="no">1</td>
+                    <td class="category_update"><span>업뎃</span></td>
+                    <td class="title"><span>공지사항 업데이트 테스트 1번</span></td>
+                    <td class="author"><span>test</span></td>
+                    <td class="time"><span>2022.11.23</span></td>
+                    <td class="readNum"><span>999</span></td>
+                </tr>
+                <tr>
+                    <td class="no">2</td>
+                    <td class="category_notice"><span>알림</span></td>
+                    <td class="title"><span>공지사항 일반글 테스트 1번</span></td>
+                    <td class="author"><span>test</span></td>
+                    <td class="time"><span>2022.11.23</span></td>
+                    <td class="readNum"><span>555</span></td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- 여기까지 페이지마다 다름 -->
+        </div>
+        <div th:replace="/index :: .wrapper-aside-right"></div>
+
+    </div>
+</div>
+<script src="/static/js/indexFront.js"></script>
+<script src="/static/js/board/boardPost.js"></script>
+</body>
+</html>

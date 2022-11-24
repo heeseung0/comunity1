@@ -5,6 +5,14 @@
     height: 40px;
 }
 
+.board_header a {
+    color: #141c1f;
+}
+
+.board_header a:hover {
+    color: orange;
+}
+
 .header_title {
     padding: 0px 0px 10px 0px;
     border-bottom: 1px solid orange;
