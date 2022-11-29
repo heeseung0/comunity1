@@ -2,11 +2,17 @@
 <html lang="ko" xmlns: th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>공지사항</title>
+    <title>테스트페이지</title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/newAccount.css">
     <link rel="stylesheet" href="/static/css/board.css">
+    <!-- 클래식 에디터 -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
+    <style>
+        .ck-editor__editable { height: 400px; }
+        .ck-content { font-size: 12px; }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -18,8 +24,9 @@
             <div class="board_header">
                 <h3 class="header_title">공지사항</h3>
             </div>
-            <form action="testPost" method="post">
-
+            <form method="post" action="/api/Board/testPost">
+                <textarea name="testText" id="editor"></textarea>
+                <button type="submit" class="account-submit"></button>
             </form>
             <!-- 여기까지 페이지마다 다름 -->
         </div>
@@ -27,5 +34,6 @@
     </div>
 </div>
 <script src="/static/js/indexFront.js"></script>
+<script src="/static/js/board/boardPost.js"></script>
 </body>
 </html>
