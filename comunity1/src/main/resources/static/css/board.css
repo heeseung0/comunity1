@@ -20,6 +20,18 @@
     color: #141c1f;
 }
 
+.btn_write {
+    float: right;
+    border: 1px solid #141c1f;
+
+    width: 70px;
+    height: 30px;
+
+    color: #d58512 !important;
+    text-align: center;
+    background-color: white;
+}
+
 .board_body_table {
     border-collapse: collapse;
     border-spacing: 0px;

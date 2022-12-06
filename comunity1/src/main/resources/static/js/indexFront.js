@@ -1,6 +1,17 @@
 window.addEventListener("load", () => {
+    const dropdown_Nav = document.querySelectorAll(".dropdown");
+    const dropdown_Menu_Nav = document.querySelectorAll(".dropdown-menu");
     const postList_Nav = document.querySelectorAll(".postList");
     const tab_pane = document.querySelectorAll(".tab-pane");
+
+    dropdown_Nav.forEach((list, index) => {
+        list.addEventListener("mouseover", () => {
+            dropdown_Menu_Nav.forEach((menu) => {
+                menu.setAttribute("class", "dropdown-menu hidden");
+            });
+            dropdown_Menu_Nav[index].setAttribute("class", "dropdown-menu open");
+        });
+    });
 
     postList_Nav.forEach((list, index) => {
         list.addEventListener("mouseover", () => {
@@ -21,5 +32,5 @@ window.addEventListener("load", () => {
 });
 
 function logout() {
-    location.href="/logout";
+    location.href = "/logout";
 }
