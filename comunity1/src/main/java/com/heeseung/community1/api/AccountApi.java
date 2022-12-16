@@ -11,6 +11,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/api/account")
 @RequiredArgsConstructor
@@ -18,10 +20,19 @@ public class AccountApi {
     private final AccountService accountService;
 
     @GetMapping("/getLogin")
-    public ResponseEntity<?> getLogin(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+    public ResponseEntity<?> getLogin(@AuthenticationPrincipal PrincipalDetails principalDetails,
+                                      HttpSession session) {
+        if(session.getAttribute("getLogin") == null){
+            session.setAttribute("getLogin", "");
+        }
+
         if (principalDetails != null) {
+            if (!session.getAttribute("getLogin").equals(principalDetails.getRole())) {
+                session.setAttribute("getLogin", principalDetails.getRole());
+            }
             return ResponseEntity.ok().body(new CMRespDto<>("principalDetails", principalDetails));
         } else {
+            session.setAttribute("getLogin", "anonymousUser");
             Object test = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             return ResponseEntity.ok().body(new CMRespDto<>("principalDetails", test));
         }
@@ -29,9 +40,9 @@ public class AccountApi {
 
     @PostMapping("/leave")
     public ResponseEntity<?> leave(@AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
-        if(accountService.leave(principalDetails.getUsername()) == 1) {
+        if (accountService.leave(principalDetails.getUsername()) == 1) {
             return ResponseEntity.ok().body(new CMRespDto<>("success account leave", null));
-        }else{
+        } else {
             return ResponseEntity.ok().body(new CMRespDto<>("failed account leave", null));
         }
     }
@@ -40,11 +51,11 @@ public class AccountApi {
     public ResponseEntity<?> modify(@AuthenticationPrincipal PrincipalDetails principalDetails,
                                     @RequestParam @Nullable String password_now,
                                     @RequestParam @Nullable String password_new) throws Exception {
-        accountService.modify(new ModifyReqDto(principalDetails.getUsername(),password_now,password_new));
+        accountService.modify(new ModifyReqDto(principalDetails.getUsername(), password_now, password_new));
 
-        if(accountService.leave(principalDetails.getUsername()) == 1) {
+        if (accountService.leave(principalDetails.getUsername()) == 1) {
             return ResponseEntity.ok().body(new CMRespDto<>("success account leave", null));
-        }else{
+        } else {
             return ResponseEntity.ok().body(new CMRespDto<>("failed account leave", null));
         }
     }

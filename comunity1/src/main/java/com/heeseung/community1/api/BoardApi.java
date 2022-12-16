@@ -1,25 +1,22 @@
 package com.heeseung.community1.api;
 
 import com.heeseung.community1.dto.CMRespDto;
-import com.heeseung.community1.dto.ModifyReqDto;
-import com.heeseung.community1.security.PrincipalDetails;
-import com.heeseung.community1.service.AccountService;
+import com.heeseung.community1.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.Nullable;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/Board")
+@RequestMapping("/api/board")
 @RequiredArgsConstructor
 public class BoardApi {
-    private final AccountService accountService;
+    private final BoardService boardService;
 
-    @PostMapping("/testPost")
-    public ResponseEntity<?> leave(@RequestParam @Nullable String testText) throws Exception {
-        return ResponseEntity.ok().body(new CMRespDto<>(testText, null));
+    @GetMapping("/{boardURL}/getPost")
+    public ResponseEntity<?> getPosts(@PathVariable String boardURL) throws Exception{
+        return ResponseEntity.ok().body(new CMRespDto<>("getPosts",boardService.getPost(boardURL)));
     }
-
 }

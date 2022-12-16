@@ -8,7 +8,6 @@ window.addEventListener('load', () => {
         success: (response) => {
             console.log(response);
             if (response.data == null || response.data == "anonymousUser") {
-                let error = '1';
                 member.innerHTML += `
                     <form class="login-form" method="post" action="/member/login">
                         <div class="input-div">

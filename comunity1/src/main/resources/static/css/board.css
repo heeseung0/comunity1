@@ -121,3 +121,32 @@ tbody tr .category_update span {
     background-color: chocolate;
     color: white;
 }
+
+tbody tr .category_imple span {
+    background-color: #cc0000;
+    color: white;
+}
+
+.newPost_type_Span {
+    margin-right: 10px;
+    font-size: 13px;
+}
+
+.newPost_type {
+    width: 75px;
+    height: 30px;
+}
+
+.newPost_title {
+    margin-top: 10px;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    padding: 3px;
+
+    width: 100%;
+    height: 30px;
+    resize: none;
+
+    font-weight: bold;
+    font-size: 15px;
+}
