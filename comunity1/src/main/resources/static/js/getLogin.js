@@ -8,6 +8,9 @@ window.addEventListener('load', () => {
         success: (response) => {
             console.log(response);
             if (response.data == null || response.data == "anonymousUser") {
+                sessionStorage.setItem('getLogin','');
+                sessionStorage.setItem('getLoginRole','anonymousUser');
+
                 member.innerHTML += `
                     <form class="login-form" method="post" action="/member/login">
                         <div class="input-div">
@@ -25,8 +28,12 @@ window.addEventListener('load', () => {
                         </div>
                     </form>                 
                 `;
-            } else if (response.data.account.role == 1) {
-                member.innerHTML = `
+            }else{
+                sessionStorage.setItem('getLogin',response.data.username);
+                sessionStorage.setItem('getLoginRole',response.data.role);
+
+                if (response.data.account.role == 1) {
+                    member.innerHTML = `
                     <div class="aside-left-logo_div">
                         <a href="/"><img src="/static/images/main_logo.jpg"></a>
                     </div>
@@ -46,8 +53,8 @@ window.addEventListener('load', () => {
                         </div>
                     </div>                    
                 `;
-            } else if (response.data.account.role == 3) {
-                member.innerHTML = `
+                } else if (response.data.account.role == 3) {
+                    member.innerHTML = `
                     <div class="aside-left-logo_div">
                         <a href="/"><img src="/static/images/main_logo.jpg"></a>
                     </div>
@@ -67,7 +74,10 @@ window.addEventListener('load', () => {
                         </div>
                     </div>                    
                 `;
+                }
             }
+
+
         }, error: (error) => {
             console.log(error);
         }

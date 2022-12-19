@@ -4,10 +4,7 @@ import com.heeseung.community1.dto.CMRespDto;
 import com.heeseung.community1.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/board")
@@ -15,8 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class BoardApi {
     private final BoardService boardService;
 
-    @GetMapping("/{boardURL}/getPost")
+    @GetMapping("/{boardURL}/getPosts")
     public ResponseEntity<?> getPosts(@PathVariable String boardURL) throws Exception{
-        return ResponseEntity.ok().body(new CMRespDto<>("getPosts",boardService.getPost(boardURL)));
+        return ResponseEntity.ok().body(new CMRespDto<>("getPosts",boardService.getPosts(boardURL)));
+    }
+
+    @GetMapping("/{boardURL}/{postNum}/getPost")
+    public ResponseEntity<?> getPost(@PathVariable String boardURL,
+                                     @PathVariable String postNum) throws Exception{
+        return ResponseEntity.ok().body(new CMRespDto<>("getPost",boardService.getPost(boardURL,Integer.valueOf(postNum))));
     }
 }

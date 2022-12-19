@@ -22,6 +22,8 @@
 
 .btn_write {
     float: right;
+    border-collapse: collapse;
+    border-spacing: 0px;
     border: 1px solid #141c1f;
 
     width: 70px;

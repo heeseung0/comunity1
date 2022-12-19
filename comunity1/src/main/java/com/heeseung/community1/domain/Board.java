@@ -2,9 +2,11 @@ package com.heeseung.community1.domain;
 
 import com.heeseung.community1.dto.BoardReqDto;
 import lombok.Builder;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
+@Data
 @Builder
 public class Board {
     private int id;

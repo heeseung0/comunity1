@@ -22,17 +22,13 @@ public class AccountApi {
     @GetMapping("/getLogin")
     public ResponseEntity<?> getLogin(@AuthenticationPrincipal PrincipalDetails principalDetails,
                                       HttpSession session) {
-        if(session.getAttribute("getLogin") == null){
-            session.setAttribute("getLogin", "");
-        }
-
         if (principalDetails != null) {
-            if (!session.getAttribute("getLogin").equals(principalDetails.getRole())) {
-                session.setAttribute("getLogin", principalDetails.getRole());
-            }
+            session.setAttribute("getLogin",principalDetails.getAccount());
+            session.setAttribute("getLoginRole",principalDetails.getRole());
             return ResponseEntity.ok().body(new CMRespDto<>("principalDetails", principalDetails));
         } else {
-            session.setAttribute("getLogin", "anonymousUser");
+            session.setAttribute("getLogin","");
+            session.setAttribute("getLoginRole", "anonymousUser");
             Object test = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             return ResponseEntity.ok().body(new CMRespDto<>("principalDetails", test));
         }

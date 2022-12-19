@@ -12,8 +12,22 @@
                 0,
                 #{board.contents})
     </insert>
+    <delete id="delete">
+        delete from ${table} where id = #{id}
+    </delete>
 
-    <select id="get" resultType="com.heeseung.community1.domain.Board">
+    <update id="update">
+        update ${table}
+        set type = #{board.type},
+            title = #{board.title},
+            writer = #{board.writer},
+            contents = #{board.contents},
+            date_update = now()
+        where id = #{id}
+
+    </update>
+
+    <select id="gets" resultType="com.heeseung.community1.domain.Board">
         select board.id,
                board.type,
                board.title,
@@ -25,9 +39,23 @@
         from ${table} board
     </select>
 
+    <select id="get" resultType="com.heeseung.community1.domain.Board">
+        select board.id,
+               board.type,
+               board.title,
+               board.writer,
+               board.date_post,
+               board.date_update,
+               board.view,
+               board.contents
+        from ${table} board
+        where board.id = #{id}
+    </select>
+
     <update id="addViewCount">
         UPDATE ${table} board
         SET board.view = board.view + 1
         WHERE board.id = #{id}
     </update>
+
 </mapper>

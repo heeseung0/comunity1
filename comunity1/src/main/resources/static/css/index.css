@@ -23,6 +23,21 @@ body {
     display: block;
 }
 
+.btnSimple {
+    border-collapse: collapse;
+    border-spacing: 0px;
+    border: 1px solid #141c1f;
+
+    width: 70px;
+    height: 30px;
+
+    color: #141c1f;
+    text-align: center;
+    background-color: white;
+
+    cursor: pointer;
+}
+
 .container {
     display: block;
 }

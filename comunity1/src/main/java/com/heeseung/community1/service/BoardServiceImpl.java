@@ -1,6 +1,7 @@
 package com.heeseung.community1.service;
 
 import com.heeseung.community1.domain.Board;
+import com.heeseung.community1.dto.BoardModifyReqDto;
 import com.heeseung.community1.dto.BoardReqDto;
 import com.heeseung.community1.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public int newPost(BoardReqDto boardReqDto, String boardURL) throws Exception {
+    public int newPost(String boardURL, BoardReqDto boardReqDto) throws Exception {
         Board board = Board.builder()
                 .type(boardReqDto.getType())
                 .title(boardReqDto.getTitle())
@@ -37,15 +38,33 @@ public class BoardServiceImpl implements BoardService {
                 .contents(boardReqDto.getContents())
                 .build();
 
-        boardRepository.save(board, getTableNames(boardURL));
+        boardRepository.save(getTableNames(boardURL), board);
         return 1;
     }
 
     @Override
-    public List<BoardReqDto> getPost(String boardURL) throws Exception {
+    public int deletePost(String boardURL, int postNum) throws Exception {
+        return boardRepository.delete(getTableNames(boardURL), postNum);
+    }
+
+    @Override
+    public int updatePost(String boardURL, int postNum, BoardModifyReqDto boardModifyReqDto) throws Exception {
+        Board board = Board.builder()
+                .type(Integer.valueOf(boardModifyReqDto.getType()))
+                .title(boardModifyReqDto.getTitle())
+                .writer(boardModifyReqDto.getWriter())
+                .contents(boardModifyReqDto.getContents())
+                .build();
+
+        boardRepository.update(getTableNames(boardURL), postNum, board);
+        return 0;
+    }
+
+    @Override
+    public List<BoardReqDto> getPosts(String boardURL) throws Exception {
         List<BoardReqDto> reqDtoList = new ArrayList<BoardReqDto>();
 
-        boardRepository.get(getTableNames(boardURL)).forEach(board -> {
+        boardRepository.gets(getTableNames(boardURL)).forEach(board -> {
             reqDtoList.add(board.toDto());
         });
 
@@ -53,7 +72,21 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public int addViewCount(String boardURL, int id) throws Exception {
-        return boardRepository.addViewCount(getTableNames(boardURL),id);
+    public BoardReqDto getPost(String boardURL, int postNum) throws Exception {
+        Board board = boardRepository.get(getTableNames(boardURL), postNum);
+        return BoardReqDto.builder()
+                .type(board.getType())
+                .title(board.getTitle())
+                .writer(board.getWriter())
+                .contents(board.getContents())
+                .build();
+
     }
+
+    @Override
+    public int addViewCount(String boardURL, int id) throws Exception {
+        return boardRepository.addViewCount(getTableNames(boardURL), id);
+    }
+
+
 }

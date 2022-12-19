@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/newAccount.css">
     <link rel="stylesheet" href="/static/css/board.css">
+    <link rel="stylesheet" href="/static/css/boardPost.css">
 </head>
 <body>
 <div class="container">
@@ -16,10 +17,21 @@
         <div class="wrapper-contents">
             <!-- 여기부터 페이지마다 다름 -->
             <div class="board_header">
-                <span th:if="${session.getLoginRole == 'admin'}">
-                    <a class="btn_write" href="/Notice/newPost">글쓰기</a>
-                </span>
-                <h3 class="header_title">공지사항</h3>
+                <h3 class="header_title"></h3>
+            </div>
+            <div class="board_read">
+                <div class="read_header">
+                    <div class="header"></div>
+                    <div class="footer"></div>
+                </div>
+                <div class="read_body"></div>
+                <div class="read_footer hidden">
+                    <button class="btnSimple postModify" type="button">수정</button>
+                    <button class="btnSimple postDelete" type="button">삭제</button>
+                </div>
+            </div>
+            <div class="feedback">
+
             </div>
             <table class="board_body_table">
                 <thead>
@@ -34,12 +46,10 @@
                 </thead>
                 <tbody class="jsTarget_tbody"></tbody>
             </table>
-            <div class="board_footer_others">
-                검색, 페이징, 쓰기버튼
-            </div>
             <!-- 여기까지 페이지마다 다름 -->
         </div>
         <div th:replace="/index :: .wrapper-aside-right"></div>
+
     </div>
 </div>
 <script src="/static/js/indexFront.js"></script>
