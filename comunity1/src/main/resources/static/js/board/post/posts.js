@@ -18,8 +18,6 @@ window.addEventListener('load', () => {
     }
 })
 
-
-//이렇게 불러오면 게시글이 많아지면 부하가 큼 (limit 걸어서 들고와야 함)
 function noticeGet() {
     let url = location.href.split('/')[3];
     let url2 = location.href.split('/')[4];
@@ -38,7 +36,12 @@ function noticeGet() {
         success: (response) => {
             console.log(response);
             const maxPostsInPage = 20;
-            const maxPage = (response.data.length / maxPostsInPage) + 1;
+            const maxPage = Math.floor((response.data.length / maxPostsInPage)) + 1;
+            const strCut = "page=";
+            const nowPage = url.indexOf(strCut) > 0 ? url.substring(url.indexOf(strCut) + String(strCut).length) :
+                url2 != undefined ? url2.indexOf(strCut) > 0 ? url2.substring(url2.indexOf(strCut) + String(strCut).length) : 1 : 1;
+            const nowParam = url.indexOf("?") > 0 ? url.substring(url.indexOf("?")) :
+                url2 != undefined ? url2.indexOf("?") > 0 ? url2.substring(url2.indexOf("?")) : "" : "";
 
             tbody.innerHTML = "";
             response.data.forEach((post, index) => {
@@ -67,12 +70,6 @@ function noticeGet() {
                 }
 
                 //----------후처리----------
-                let strCut = "page=";
-                let nowPage = url.indexOf(strCut) > 0 ? url.substring(url.indexOf(strCut) + String(strCut).length) :
-                    url2 != undefined ? url2.indexOf(strCut) > 0 ? url2.substring(url2.indexOf(strCut) + String(strCut).length) : 1 : 1;
-                let nowParam = url.indexOf("?") > 0 ? url.substring(url.indexOf("?")) :
-                    url2 != undefined ? url2.indexOf("?") > 0 ? url2.substring(url2.indexOf("?")) : "" : "";
-
                 if (nowPage * maxPostsInPage - maxPostsInPage <= index && index < nowPage * maxPostsInPage) {
                     tbody.innerHTML += `
                         <tr>
@@ -87,16 +84,39 @@ function noticeGet() {
                 }
 
                 //----------페이징 처리 Footer----------
-                pagingFooter.innerHTML = `전체글 : ${response.data.length}개<br>`;
-
-                for (let i = 1; i <= maxPage; i++) {
-                    pagingFooter.innerHTML += `
+                const paging_tmp = nowPage > 10 ? Math.floor(((nowPage-1) / 10)) * 10 + 1 : 1;
+                let inner_tmp = "";
+                inner_tmp = `
+                    전체글 : ${response.data.length}개<br>
+                    <div class="board_footer_others_inner">
+                        <li class="paging_type1">
+                            <a href='${location.pathname}?page=1'>&lt;&lt;
+                        </li>
+                        <li class="paging_type1">
+                            <a href='${location.pathname}?page=${paging_tmp-1}'>&lt;
+                        </li>
+                `;
+                for (let i = paging_tmp; i <= maxPage && i <= paging_tmp + 9; i++) {
+                    inner_tmp += `
+                        <li class="paging_type1">
                             <a href='${location.pathname}?page=${i}'>${i} </a>
+                        </li>
                     `;
                 }
+                inner_tmp += `
+                        <li class="paging_type1">
+                            <a href='${location.pathname}?page=${paging_tmp+10}'>&gt;
+                        </li>
+                        <li class="paging_type1">
+                            <a href='${location.pathname}?page=${maxPage}'>&gt;&gt;
+                        </li>
+                    </div>
+                `;
 
+                pagingFooter.innerHTML = inner_tmp;
+
+                //----------게시글 내부일 경우에 내용 불러오는곳----------
                 if (postFooter != null && postContent != null) {
-                    //----------게시글 내부일 경우에 내용 불러오는곳----------
                     const postNumber = location.href.split('/')[4].split("?")[0];
 
                     if (post.id == postNumber) {

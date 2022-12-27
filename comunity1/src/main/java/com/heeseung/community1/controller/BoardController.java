@@ -38,7 +38,6 @@ public class BoardController {
                 .contents(contents)
                 .writer(principalDetails.getUsername())
                 .build();
-
         boardService.newPost(boardURL, boardReqDto);
         return whereImGoing(boardURL);
     }

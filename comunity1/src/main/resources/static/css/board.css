@@ -152,3 +152,31 @@ tbody tr .category_imple span {
     font-weight: bold;
     font-size: 15px;
 }
+
+.board_footer_others {
+    text-align: center;
+}
+
+.board_footer_others_inner {
+    display: flex;
+
+    width: auto;
+    height: auto;
+
+    justify-content: center;
+    text-align: center;
+}
+
+.paging_type1 {
+    border: 1px solid #555555;
+    display: flex;
+    flex-direction: column;
+
+    width: 25px;
+    height: 25px;
+
+    justify-content: center;
+    text-align: center;
+
+    font-size: 13px;
+}
