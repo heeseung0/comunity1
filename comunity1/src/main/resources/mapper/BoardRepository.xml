@@ -37,6 +37,7 @@
                board.view,
                board.contents
         from ${table} board
+        ORDER BY board.id DESC
     </select>
 
     <select id="get" resultType="com.heeseung.community1.domain.Board">

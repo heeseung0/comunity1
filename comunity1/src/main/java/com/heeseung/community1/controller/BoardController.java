@@ -38,8 +38,8 @@ public class BoardController {
                 .contents(contents)
                 .writer(principalDetails.getUsername())
                 .build();
-        boardService.newPost(boardURL, boardReqDto);
 
+        boardService.newPost(boardURL, boardReqDto);
         return whereImGoing(boardURL);
     }
 
@@ -74,6 +74,14 @@ public class BoardController {
     private String whereImGoing(String boardURL) {
         if (boardURL.equalsIgnoreCase("Notice")) {
             return "board/notice";
+        } else if (boardURL.equalsIgnoreCase("Event")) {
+            return "board/event";
+        } else if (boardURL.equalsIgnoreCase("QNA")) {
+            return "board/qna";
+        } else if (boardURL.equalsIgnoreCase("Free")) {
+            return "board/free";
+        } else if (boardURL.equalsIgnoreCase("File")) {
+            return "board/file";
         } else {
             return "index";
         }

@@ -5,6 +5,7 @@ import com.heeseung.community1.dto.ModifyReqDto;
 import com.heeseung.community1.dto.RegisterReqDto;
 import com.heeseung.community1.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -42,10 +43,11 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public int modify(ModifyReqDto modifyReqDto) throws Exception {
         String pd_now = modifyReqDto.getPassword_now();
-        String pd_new = modifyReqDto.getPassword_new();
+        Account account = accountRepository.getAccount(modifyReqDto.getUsername());
+
 
         //Validation check
-        if (modifyReqDto.getPassword_now().length() < 4 || 20 < modifyReqDto.getPassword_now().length()) {
+        if (!BCrypt.checkpw(pd_now, account.getPassword())) {
             return 1;   //validation_password_now
         } else if (modifyReqDto.getPassword_new().length() < 4 || 20 < modifyReqDto.getPassword_new().length()) {
             return 2;   //validation_password_new
