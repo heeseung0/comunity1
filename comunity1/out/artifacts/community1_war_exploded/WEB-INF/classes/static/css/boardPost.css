@@ -1,0 +1,76 @@
+.read_header {
+    width: 100%;
+    height: auto;
+}
+
+.read_header {
+
+}
+
+.read_header .header {
+    display: inline-block;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    padding: 4px 9px;
+
+    width: 100%;
+    height: 40px;
+
+    background-color: #f6f6f6;
+}
+
+.read_header .header .title {
+    float: left;
+    margin: 0px;
+
+    font-size: 18px;
+    line-height: 2rem;
+}
+
+.read_header .header .nick_area {
+    float: right;
+    padding-top: 10px;
+
+    font-size: 12px;
+}
+
+.read_header .footer {
+    display: inline-block;
+    border: none;
+    padding: 0px;
+
+    width: 100%;
+}
+
+.read_header .footer .link {
+    float: left;
+
+    text-decoration: none;
+    color: gray;
+    font-size: .8rem;
+}
+
+.read_header .footer .sum {
+    margin: 0px;
+    float: right;
+
+    font-size: .8rem;
+}
+
+.read_body {
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.read_body p {
+    margin: 0px;
+}
+
+.read_footer {
+    margin-bottom: 5px;
+    border-top: 2px solid #555555;
+    padding: 7px 0px;
+
+    width: 100%;
+    height: 40px;
+}

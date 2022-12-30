@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns: th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>파일게시판</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/newAccount.css">
+    <link rel="stylesheet" href="/static/css/board.css">
+</head>
+<body>
+<div class="container">
+    <aside th:replace="/index :: .aside-left"></aside>
+    <div class="seung-wrapper">
+        <nav th:replace="/index :: .nav-main"></nav>
+        <div class="wrapper-contents">
+            <!-- 여기부터 페이지마다 다름 -->
+            <div class="board_header">
+                <span th:if="${session.getLoginRole != 'anonymousUser'}">
+                    <a class="btn_write" href="/Notice/newPost">글쓰기</a>
+                </span>
+                <h3 class="header_title">파일게시판</h3>
+            </div>
+            <table class="board_body_table">
+                <thead>
+                <tr>
+                    <th scope="col">번호</th>
+                    <th scope="col">분류</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">글쓴이</th>
+                    <th scope="col">날짜</th>
+                    <th scope="col">조회수</th>
+                </tr>
+                </thead>
+                <tbody class="jsTarget_tbody"></tbody>
+            </table>
+            <div class="board_footer_others">
+                검색, 페이징, 쓰기버튼
+            </div>
+            <!-- 여기까지 페이지마다 다름 -->
+        </div>
+        <div th:replace="/index :: .wrapper-aside-right"></div>
+    </div>
+</div>
+<script src="/static/js/indexFront.js"></script>
+<script src="/static/js/board/post/posts.js"></script>
+</body>
+</html>

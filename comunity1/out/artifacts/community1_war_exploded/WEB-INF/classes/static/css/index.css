@@ -1,0 +1,408 @@
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    border: none;
+    margin: 0px;
+
+    position: relative;
+    color: #333;
+    background-color: #141c1f;
+}
+
+.hidden {
+    display: none;
+}
+
+.open {
+    display: block;
+}
+
+.btnSimple {
+    border-collapse: collapse;
+    border-spacing: 0px;
+    border: 1px solid #141c1f;
+
+    width: 70px;
+    height: 30px;
+
+    color: #141c1f;
+    text-align: center;
+    background-color: white;
+
+    cursor: pointer;
+}
+
+.container {
+    display: block;
+}
+
+.seung-wrapper {
+    margin-left: 210px;
+
+    width: 1000px;
+}
+
+.nav-main {
+    position: absolute;
+    top: 40px;
+
+    padding-right: 20px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    height: 50px;
+
+    background-color: rgb(51, 51, 51);
+}
+
+.dropdown {
+    position: relative;
+
+    list-style: none;
+
+    margin-left: 20px;
+
+    min-width: 130px;
+
+    color: white;
+    text-align: center;
+}
+
+.dropdown > a {
+    color: white;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    min-width: 130px;
+
+    margin: 0px;
+    border-top: 2px solid #cccccc;
+    padding: 5px 0px;
+
+    background-color: rgb(51, 51, 51);
+}
+
+.dropdown-menu li > a {
+    padding-left: 7px;
+    padding-right: 7px;
+    color: #cecece;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu li a {
+    display: block;
+}
+
+.aside-left {
+    position: fixed;
+    margin: 0;
+    float: left;
+    top: 0;
+    left: 0;
+
+    border-right: 1px solid #333333;
+
+    width: 180px;
+    height: 100%;
+
+    background-color: #141c1f;
+}
+
+.aside-left-logo_div {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.aside-left-span_div {
+    padding: 10px 0px 10px 10px;
+
+    background-color: #0f151a;
+}
+
+.aside-left-span_div span {
+    Color: #3e525b;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.login-form {
+
+}
+
+.input-div {
+    padding: 5px 10px 5px 5px;
+    height: 70px;
+}
+
+.input-div .login-form-input {
+    border: 1px solid #ccc;
+
+    width: 100%;
+    height: 30px;
+
+    color: #555;
+    background-color: #fff;
+}
+
+.input-div .login-form-input:nth-child(1) {
+    border-bottom: 0px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.input-div .login-form-input:nth-child(2) {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.button-div, .findAccount-div {
+    padding: 2px 10px 2px 5px;
+    height: 35px;
+}
+
+.login-form-btn-login {
+    border: 1px solid #2e6da4;
+
+    width: 100%;
+    height: 100%;
+
+    color: #dedede;
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: #337ab7;
+}
+
+.login-form-findAccount {
+    border: 1px solid #d58512;
+
+    width: 100%;
+    height: 100%;
+
+    color: #dedede;
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: #ec971f;
+}
+
+.login-form-btn-newAccount {
+    border: 1px solid #007700;
+
+    width: 100%;
+    height: 100%;
+
+    color: #dedede;
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: #009900;
+}
+
+.login-success {
+    justify-content: center;
+    text-align: center;
+}
+
+.login-success > .button-div {
+    margin-top: 10px;
+}
+
+.login-username {
+    color: #009900;
+}
+
+.login-username2 {
+    color: #335533;
+}
+
+.login-btn-logout {
+    border: 1px solid #cccccc;
+
+    width: 100%;
+    height: 100%;
+
+    color: #dedede;
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: #d58512;
+}
+
+.login-btn-modify {
+    border: 1px solid white;
+
+    width: 100%;
+    height: 100%;
+
+    color: #333333;
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: lightgray;
+}
+
+.login-btn-AccountLeave {
+    border: 1px solid #cccccc;
+
+    width: 100%;
+    height: 100%;
+
+    color: #dedede;
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: #cc0000;
+}
+
+.contents-wrapper {
+    height: 1100px;
+}
+
+.wrapper-contents {
+    position: absolute;
+    top: 120px;
+    float: left;
+
+    border: 1px solid #555555;
+    padding: 15px;
+
+    width: 680px;
+    height: auto;
+
+    background-color: white;
+}
+
+.contents {
+    display: flex;
+    justify-content: center;
+    flex-flow: wrap;
+
+    padding-top: 10px;
+}
+
+.widgetContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 9px 12px;
+
+    border: 1px solid #dedede;
+    background-color: #fff;
+
+    width: 290px;
+    height: 250px;
+}
+
+.widgetContainer a {
+    margin-bottom: 5px;
+    padding-left: 15px;
+    padding-top: 3px;
+    color: #141c1f;
+    font-weight: bold;
+}
+
+.widgetContainer ul {
+    margin: 0px;
+    border-top: 2px solid #c00;
+}
+
+.wrapper-aside-right {
+    position: absolute;
+    top: 650px;
+    left: 950px;
+
+    background-color: white;
+}
+
+.aside-right {
+    width: 260px;
+    height: 260px;
+}
+
+.postList-div {
+    width: 100%;
+    height: 30px;
+
+    justify-content: center;
+}
+
+.postList-nav {
+    list-style-type: none;
+
+    margin: 0px;
+    border-bottom: 1px solid #ddd;
+    padding: 0px;
+
+    background-color: #f5f5f5;
+}
+
+.postList-nav > li {
+    position: relative;
+    display: inline-block;
+    border-right: 1px solid #ddd;
+    padding: 4px 10px;
+}
+
+.postList-nav .active {
+    font-weight: bold;
+}
+
+.postList-nav > li > a {
+    color: #333;
+    font-size: 11px;
+}
+
+.postList-tab-content {
+    padding: 6px 6px 0px;
+}
+
+.postList-tab-content .tab-pane {
+    display: none;
+}
+
+.tab-pane {
+    width: 100%;
+    height: 100%;
+}
+
+.document_content > a {
+    color: #333;
+}
+
+.postList-tab-content .active {
+    display: block;
+}
+
+.wrapper-footer {
+    position: absolute;
+    bottom: 0px;
+
+    border-top: 3px solid #333333;
+    border-left: 1px solid #333333;
+    border-right: 1px solid #333333;
+
+    width: 680px;
+    height: 100px;
+
+    background-color: white;
+}
+
+.alert-login > span {
+    color: orangered;
+}
