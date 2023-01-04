@@ -2,7 +2,7 @@
 <html lang="ko" xmlns: th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>테스트페이지</title>
+    <title>공지사항 수정</title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/newAccount.css">
@@ -38,7 +38,7 @@
                     <option value="3">중요</option>
                 </select>
             </div>
-            <textarea name="title" class="newPost_title" placeholder="제목을 입력하세요."></textarea>
+            <textarea name="title" class="newPost_title" placeholder="제목을 입력하세요." required></textarea>
             <textarea name="contents" id="editor"></textarea>
             <button type="button" class="account-submit">수정</button>
             <!-- 여기까지 페이지마다 다름 -->

@@ -12,13 +12,17 @@ window.addEventListener('load', () => {
         switch (thisLocation) {
             case 'notice':
             case 'Notice':
-                noticeGet();
+                postGet('Notice');
+                break;
+            case 'free':
+            case 'Free':
+                postGet('Free');
                 break;
         }
     }
 })
 
-function noticeGet() {
+function postGet(thisURL) { //중복 변수,함수 제거 목적으로 하나로 통합
     const url = location.href.split('/')[3];
     const url2 = location.href.split('/')[4];
     const tbody = document.querySelector(".jsTarget_tbody");
@@ -29,10 +33,20 @@ function noticeGet() {
     const postContentFooter = document.querySelector(".read_footer");
     const pagingFooter = document.querySelector(".board_footer_others");
 
+    let titleName = "";
+    switch(thisURL){
+        case 'Notice':
+            titleName = "공지사항";
+            break;
+        case 'Free':
+            titleName = "자유게시판";
+            break;
+    }
+
     $.ajax({
         async: false,
         type: "get",
-        url: "/api/board/notice/getPosts",
+        url: "/api/board/" + thisURL + "/getPosts",
         success: (response) => {
             console.log(response);
             const maxPostsInPage = 20;
@@ -46,7 +60,7 @@ function noticeGet() {
             tbody.innerHTML = "";
 
             //----------페이징 처리 Footer----------
-            const paging_tmp = nowPage > 10 ? Math.floor(((nowPage-1) / 10)) * 10 + 1 : 1;
+            const paging_tmp = nowPage > 10 ? Math.floor(((nowPage - 1) / 10)) * 10 + 1 : 1;
             let inner_tmp = "";
             inner_tmp = `
                     전체글 : ${response.data.length}개<br>
@@ -55,7 +69,7 @@ function noticeGet() {
                             <a href='${location.pathname}?page=1'>&lt;&lt;
                         </li>
                         <li class="paging_type1">
-                            <a href='${location.pathname}?page=${paging_tmp-1}'>&lt;
+                            <a href='${location.pathname}?page=${paging_tmp - 1}'>&lt;
                         </li>
                 `;
             for (let i = paging_tmp; i <= maxPage && i <= paging_tmp + 9; i++) {
@@ -67,7 +81,7 @@ function noticeGet() {
             }
             inner_tmp += `
                         <li class="paging_type1">
-                            <a href='${location.pathname}?page=${paging_tmp+10}'>&gt;
+                            <a href='${location.pathname}?page=${paging_tmp + 10}'>&gt;
                         </li>
                         <li class="paging_type1">
                             <a href='${location.pathname}?page=${maxPage}'>&gt;&gt;
@@ -87,19 +101,29 @@ function noticeGet() {
                 date_process = date_process.replace(/-/g, '.');
                 date_process = date_process.substring(0, date_process.indexOf("T"));
 
-                switch (post.type) {
-                    case 1:
-                        type_class = "category_notice";
-                        type_content = "알림";
-                        break;
-                    case 2:
-                        type_class = "category_update";
-                        type_content = "업뎃";
-                        break;
-                    case 3:
-                        type_class = "category_imple";
-                        type_content = "중요";
-                        break;
+
+                if(thisURL == 'Notice'){
+                    switch (post.type) {
+                        case 1:
+                            type_class = "category_notice";
+                            type_content = "알림";
+                            break;
+                        case 2:
+                            type_class = "category_update";
+                            type_content = "업뎃";
+                            break;
+                        case 3:
+                            type_class = "category_imple";
+                            type_content = "중요";
+                            break;
+                    }
+                }else if(thisURL == 'Free'){
+                    switch (post.type) {
+                        case 1:
+                            type_class = "category_free";
+                            type_content = "자유";
+                            break;
+                    }
                 }
 
                 //----------후처리----------
@@ -108,7 +132,7 @@ function noticeGet() {
                         <tr>
                             <td class="no"><span>${post.id}</span></td>
                             <td class="${type_class}"><span>${type_content}</span></td>
-                            <td class="title"><a href="/Notice/${post.id}${nowParam}">${post.title}</a></td>
+                            <td class="title"><a href="/${thisURL}/${post.id}${nowParam}">${post.title}</a></td>
                             <td class="author"><span>${post.writer}</span></td>
                             <td class="time"><span>${date_process}</span></td>
                             <td class="readNum"><span>${post.view}</span></td>
@@ -124,13 +148,13 @@ function noticeGet() {
                         let boardURL = "/" + url;
                         let postTime = post.date_post.substring(post.date_post.indexOf("T") + 1);
 
-                        postContentHeader.innerHTML = `<a href=${boardURL}>공지사항</a>`;
+                        postContentHeader.innerHTML = `<a href=${boardURL}>${titleName}</a>`;
                         postHeader.innerHTML = `
                                 <h1 class="title"><span>${post.title}</span></h1>
                                 <div class="nick_area">${post.writer}</div>
                         `;
                         postFooter.innerHTML = `
-                                <a class="link" href="/Notice/${post.id}">127.0.0.1:8000/Notice/${post.id}</a>
+                                <a class="link" href="/${thisURL}/${post.id}">127.0.0.1/${thisURL}/${post.id}</a>
                                 <p class="sum">
                                     <span class="read" style="margin-right:40px"><b>조회 수</b> <span class="num">${post.view}</span></span>
                                     <span class="time"><b>등록일</b> <span class="num">${date_process}<span style="margin-right:20px"></span> ${postTime}</span></span>

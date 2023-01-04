@@ -23,7 +23,10 @@ public class BoardServiceImpl implements BoardService {
             case "Notice":
                 tableName = "post_notice";
                 break;
-
+            case "free":
+            case "Free":
+                tableName = "post_free";
+                break;
         }
 
         return tableName;
