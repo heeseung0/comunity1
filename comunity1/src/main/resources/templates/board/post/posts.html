@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/static/css/newAccount.css">
     <link rel="stylesheet" href="/static/css/board.css">
     <link rel="stylesheet" href="/static/css/boardPost.css">
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
 </head>
 <body>
 <div class="container">
@@ -30,8 +31,9 @@
                     <button class="btnSimple postDelete" type="button">삭제</button>
                 </div>
             </div>
-            <div class="feedback">
-
+            <div class="feedback hidden">
+                <textarea name="contents" class="reply_contents" required></textarea>
+                <button type="submit" class="comment-submit">댓글 등록</button>
             </div>
             <table class="board_body_table">
                 <thead>

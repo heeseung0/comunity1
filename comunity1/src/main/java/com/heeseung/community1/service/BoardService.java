@@ -1,6 +1,7 @@
 package com.heeseung.community1.service;
 
 import com.heeseung.community1.dto.BoardModifyReqDto;
+import com.heeseung.community1.dto.BoardReplyReqDto;
 import com.heeseung.community1.dto.BoardReqDto;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface BoardService {
     public BoardReqDto getPost(String boardURL,int postNum) throws Exception;
 
     public int addViewCount(String boardURL, int postNum) throws Exception;
+
+    public boolean newPostReply(BoardReplyReqDto boardReplyReqDto) throws Exception;
 }

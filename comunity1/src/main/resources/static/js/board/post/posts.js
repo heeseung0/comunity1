@@ -34,7 +34,7 @@ function postGet(thisURL) { //중복 변수,함수 제거 목적으로 하나로
     const pagingFooter = document.querySelector(".board_footer_others");
 
     let titleName = "";
-    switch(thisURL){
+    switch (thisURL) {
         case 'Notice':
             titleName = "공지사항";
             break;
@@ -102,7 +102,7 @@ function postGet(thisURL) { //중복 변수,함수 제거 목적으로 하나로
                 date_process = date_process.substring(0, date_process.indexOf("T"));
 
 
-                if(thisURL == 'Notice'){
+                if (thisURL == 'Notice') {
                     switch (post.type) {
                         case 1:
                             type_class = "category_notice";
@@ -117,7 +117,7 @@ function postGet(thisURL) { //중복 변수,함수 제거 목적으로 하나로
                             type_content = "중요";
                             break;
                     }
-                }else if(thisURL == 'Free'){
+                } else if (thisURL == 'Free') {
                     switch (post.type) {
                         case 1:
                             type_class = "category_free";
@@ -166,6 +166,37 @@ function postGet(thisURL) { //중복 변수,함수 제거 목적으로 하나로
                             postContentFooter.setAttribute('class', 'read_footer');
 
                             btnEvent_MD(boardURL, post.id);
+                        }
+
+                        //----------댓글----------
+                        if (sessionStorage.getItem('getLoginRole') != 'anonymousUser') {
+                            const reply = document.querySelector(".feedback");
+                            const reply_contents = document.querySelector(".reply_contents");
+                            const reply_submit = document.querySelector(".comment-submit");
+
+                            reply.setAttribute('class', 'feedback');
+                            reply_submit.onclick = () => {
+                                const boardReplyReqDto = {
+                                    writer: sessionStorage.getItem('getLogin'),
+                                    board: thisURL,
+                                    postnum: postNumber,
+                                    contents: reply_contents.value
+                                }
+
+                                $.ajax({
+                                    async: false,
+                                    type: "post",
+                                    url: "/api/board/postReply",
+                                    contentType: "application/json",
+                                    data: JSON.stringify(boardReplyReqDto),
+                                    dataType: "json",
+                                    success: () => {
+                                        location.reload();
+                                    },error: (error) => {
+                                        console.log(error);
+                                    }
+                                });
+                            }
                         }
                     }
                 }

@@ -1,6 +1,7 @@
 package com.heeseung.community1.repository;
 
 import com.heeseung.community1.domain.Board;
+import com.heeseung.community1.domain.BoardReply;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -13,4 +14,5 @@ public interface BoardRepository {
     public List<Board> gets(String table) throws Exception;
     public Board get(String table, int id) throws Exception;
     public int addViewCount(String table, int id) throws Exception;
+    public int reply_save(BoardReply boardReply) throws Exception;
 }

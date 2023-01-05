@@ -12,6 +12,7 @@
                 0,
                 #{board.contents})
     </insert>
+
     <delete id="delete">
         delete from ${table} where id = #{id}
     </delete>
@@ -59,4 +60,14 @@
         WHERE board.id = #{id}
     </update>
 
+    <insert id="reply_save" parameterType="com.heeseung.community1.domain.BoardReply">
+        insert into reply
+        values (0,
+                #{writer},
+                #{board},
+                #{postnum},
+                #{contents},
+                now(),
+                now())
+    </insert>
 </mapper>

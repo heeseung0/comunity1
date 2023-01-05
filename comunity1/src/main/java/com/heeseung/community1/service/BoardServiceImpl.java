@@ -1,7 +1,9 @@
 package com.heeseung.community1.service;
 
 import com.heeseung.community1.domain.Board;
+import com.heeseung.community1.domain.BoardReply;
 import com.heeseung.community1.dto.BoardModifyReqDto;
+import com.heeseung.community1.dto.BoardReplyReqDto;
 import com.heeseung.community1.dto.BoardReqDto;
 import com.heeseung.community1.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -91,5 +93,20 @@ public class BoardServiceImpl implements BoardService {
         return boardRepository.addViewCount(getTableNames(boardURL), id);
     }
 
+    @Override
+    public boolean newPostReply(BoardReplyReqDto boardReplyReqDto) throws Exception {
+        BoardReply boardReply = BoardReply.builder()
+                .writer(boardReplyReqDto.getWriter())
+                .board(boardReplyReqDto.getBoard())
+                .postnum(Integer.parseInt(boardReplyReqDto.getPostnum()))
+                .contents(boardReplyReqDto.getContents())
+                .build();
 
+        System.out.println(boardReplyReqDto);
+        System.out.println(boardReply);
+
+        int result = boardRepository.reply_save(boardReply);
+
+        return result != 0;
+    }
 }
