@@ -174,9 +174,10 @@ function postGet(thisURL) { //중복 변수,함수 제거 목적으로 하나로
                             const reply_contents = document.querySelector(".reply_contents");
                             const reply_submit = document.querySelector(".comment-submit");
 
+                            //댓글 등록
                             reply.setAttribute('class', 'feedback');
                             reply_submit.onclick = () => {
-                                const boardReplyReqDto = {
+                                const boardPostReplyReqDto = {
                                     writer: sessionStorage.getItem('getLogin'),
                                     board: thisURL,
                                     postnum: postNumber,
@@ -188,16 +189,42 @@ function postGet(thisURL) { //중복 변수,함수 제거 목적으로 하나로
                                     type: "post",
                                     url: "/api/board/postReply",
                                     contentType: "application/json",
-                                    data: JSON.stringify(boardReplyReqDto),
+                                    data: JSON.stringify(boardPostReplyReqDto),
                                     dataType: "json",
                                     success: () => {
                                         location.reload();
-                                    },error: (error) => {
+                                    }, error: (error) => {
                                         console.log(error);
                                     }
                                 });
                             }
                         }
+                        //댓글 읽어오기
+                        $.ajax({
+                            async: false,
+                            type: "get",
+                            url: "/api/board/getReply/" + thisURL + "/" + postNumber,
+                            success: (response) => {
+                                console.log(response);
+                                const comments = document.querySelector(".jsTarget_feedback");
+
+                                response.data.forEach(data => {
+                                    const date = replaceDate(data.date_post);
+
+                                    comments.innerHTML += `
+                                        <li>
+                                            <div class="feedbackList_div">
+                                                <b>${data.writer}</b>
+                                                <span>${data.contents}</span>
+                                                <span>${date[0]}<br>${date[1]}</span>
+                                            </div>
+                                        </li>
+                                    `;
+                                });
+                            }, error: (error) => {
+                                console.log(error);
+                            }
+                        });
                     }
                 }
             })
@@ -206,6 +233,16 @@ function postGet(thisURL) { //중복 변수,함수 제거 목적으로 하나로
             console.log(error);
         }
     });
+}
+
+function replaceDate(rawText) {
+    let date = [];
+
+    date[0] = rawText.replace(/-/g, '.');
+    date[0] = date[0].substring(0, date[0].indexOf("T"));
+    date[1] = rawText.substring(rawText.indexOf("T") + 1);
+
+    return date;
 }
 
 function btnEvent_MD(boardURL, postID) {

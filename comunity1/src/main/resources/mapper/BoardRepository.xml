@@ -70,4 +70,9 @@
                 now(),
                 now())
     </insert>
+
+    <select id="reply_get" resultType="com.heeseung.community1.domain.BoardReply">
+        select * from reply
+        where reply.board = #{board} and reply.postnum = #{postnum}
+    </select>
 </mapper>

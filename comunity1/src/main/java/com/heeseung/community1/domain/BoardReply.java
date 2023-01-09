@@ -1,6 +1,6 @@
 package com.heeseung.community1.domain;
 
-import com.heeseung.community1.dto.BoardReplyReqDto;
+import com.heeseung.community1.dto.BoardReplyRespDto;
 import lombok.Builder;
 import lombok.Data;
 
@@ -17,10 +17,9 @@ public class BoardReply {
     private LocalDateTime date_post;
     private LocalDateTime date_update;
 
-    public BoardReplyReqDto toDto(){
-        return BoardReplyReqDto.builder()
+    public BoardReplyRespDto toDto(){
+        return BoardReplyRespDto.builder()
                 .writer(this.writer)
-                .board(this.board)
                 .contents(this.contents)
                 .date_post(this.date_post)
                 .date_update(this.date_update)

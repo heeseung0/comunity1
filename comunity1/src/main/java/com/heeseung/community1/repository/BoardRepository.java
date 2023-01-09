@@ -15,4 +15,5 @@ public interface BoardRepository {
     public Board get(String table, int id) throws Exception;
     public int addViewCount(String table, int id) throws Exception;
     public int reply_save(BoardReply boardReply) throws Exception;
+    public List<BoardReply> reply_get(String board, int postnum) throws Exception;
 }

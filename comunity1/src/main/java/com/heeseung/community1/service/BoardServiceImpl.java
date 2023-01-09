@@ -2,9 +2,7 @@ package com.heeseung.community1.service;
 
 import com.heeseung.community1.domain.Board;
 import com.heeseung.community1.domain.BoardReply;
-import com.heeseung.community1.dto.BoardModifyReqDto;
-import com.heeseung.community1.dto.BoardReplyReqDto;
-import com.heeseung.community1.dto.BoardReqDto;
+import com.heeseung.community1.dto.*;
 import com.heeseung.community1.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -94,7 +92,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public boolean newPostReply(BoardReplyReqDto boardReplyReqDto) throws Exception {
+    public boolean newPostReply(BoardPostReplyReqDto boardReplyReqDto) throws Exception {
         BoardReply boardReply = BoardReply.builder()
                 .writer(boardReplyReqDto.getWriter())
                 .board(boardReplyReqDto.getBoard())
@@ -102,11 +100,21 @@ public class BoardServiceImpl implements BoardService {
                 .contents(boardReplyReqDto.getContents())
                 .build();
 
-        System.out.println(boardReplyReqDto);
-        System.out.println(boardReply);
-
         int result = boardRepository.reply_save(boardReply);
 
         return result != 0;
+    }
+
+    @Override
+    public List<BoardReplyRespDto> getReply(String boardURL, int postNum) throws Exception {
+        List<BoardReplyRespDto> responseList = new ArrayList<>();
+        List<BoardReply> domainList = new ArrayList<>();
+
+        domainList = boardRepository.reply_get(boardURL, postNum);
+        domainList.forEach(domain -> {
+            responseList.add(domain.toDto());
+        });
+
+        return responseList;
     }
 }
