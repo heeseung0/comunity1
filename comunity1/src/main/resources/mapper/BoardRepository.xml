@@ -75,4 +75,12 @@
         select * from reply
         where reply.board = #{board} and reply.postnum = #{postnum}
     </select>
+
+    <select id="recentPost" resultType="com.heeseung.community1.domain.RecentPost">
+        SELECT * FROM(
+            (SELECT *, 'Free' AS tblName FROM post_free ORDER BY id DESC LIMIT 5)
+            UNION ALL
+            (SELECT *, 'Notice' AS tblName FROM post_notice ORDER BY id DESC LIMIT 5)
+        ) qry ORDER BY date_post DESC LIMIT 5;
+    </select>
 </mapper>
