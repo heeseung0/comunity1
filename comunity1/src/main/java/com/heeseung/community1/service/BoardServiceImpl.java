@@ -64,6 +64,17 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public List<BoardReqDto> getRecentPosts(String boardURL, String count) throws Exception {
+        List<BoardReqDto> reqDtoList = new ArrayList<BoardReqDto>();
+
+        boardRepository.getsRecentCount(getTableNames(boardURL), Integer.parseInt(count)).forEach(board -> {
+            reqDtoList.add(board.toDto());
+        });
+
+        return reqDtoList;
+    }
+
+    @Override
     public List<BoardReqDto> getPosts(String boardURL) throws Exception {
         List<BoardReqDto> reqDtoList = new ArrayList<BoardReqDto>();
 

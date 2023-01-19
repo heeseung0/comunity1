@@ -24,6 +24,12 @@ public class BoardApi {
         return ResponseEntity.ok().body(new CMRespDto<>("getReply",boardService.getReply(boardURL, Integer.valueOf(postNum))));
     }
 
+    @GetMapping("/{boardURL}/getRecentPosts/{count}")
+    public ResponseEntity<?> getRecentPosts(@PathVariable String boardURL,
+                                            @PathVariable String count) throws Exception {
+        return ResponseEntity.ok().body(new CMRespDto<>("getRecentPosts "+count, boardService.getRecentPosts(boardURL,count)));
+    }
+
     @GetMapping("/{boardURL}/getPosts")
     public ResponseEntity<?> getPosts(@PathVariable String boardURL) throws Exception {
         return ResponseEntity.ok().body(new CMRespDto<>("getPosts", boardService.getPosts(boardURL)));
