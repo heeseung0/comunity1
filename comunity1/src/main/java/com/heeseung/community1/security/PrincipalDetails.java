@@ -16,15 +16,11 @@ public class PrincipalDetails implements UserDetails {
         this.account = account;
     }
 
+    @Override
     public Collection<GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> role = new ArrayList<>();
 
-        role.add(new GrantedAuthority() {
-            @Override
-            public String getAuthority() {
-                return String.valueOf(account.getRole());
-            }
-        });
+        role.add((GrantedAuthority) () -> String.valueOf(account.getRole()));
         return role;
     }
 
