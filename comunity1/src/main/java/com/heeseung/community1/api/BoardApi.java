@@ -5,6 +5,7 @@ import com.heeseung.community1.dto.CMRespDto;
 import com.heeseung.community1.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,6 +13,14 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class BoardApi {
     private final BoardService boardService;
+
+    @GetMapping("/{boardURL}/getSearchPosts")
+    public ResponseEntity<?> getSearchPosts(@PathVariable String boardURL,
+                                            @RequestParam int type,
+                                            @RequestParam int searchType,
+                                            @RequestParam @Nullable String searchLike) throws Exception{
+        return ResponseEntity.ok().body(new CMRespDto<>("getSearchPosts", boardService.getPosts(boardURL,type,searchType,searchLike)));
+    }
 
     @PostMapping("/postReply")
     public ResponseEntity<?> postReply(@RequestBody BoardPostReplyReqDto boardReplyReqDto) throws Exception {
@@ -23,6 +32,7 @@ public class BoardApi {
                                       @PathVariable String postNum) throws Exception {
         return ResponseEntity.ok().body(new CMRespDto<>("getReply",boardService.getReply(boardURL, Integer.valueOf(postNum))));
     }
+
 
     @GetMapping("/{boardURL}/getRecentPosts/{count}")
     public ResponseEntity<?> getRecentPosts(@PathVariable String boardURL,

@@ -46,5 +46,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/member/login")
                 .successHandler(new AuthSuccessHandler())   //defaultUrl 지정 가능, 파라미터 String ("/Notice"), 기본 생성자는 ("/")
                 .failureHandler(new AuthFailureHandler());
+        http.headers().frameOptions().sameOrigin();
     }
 }

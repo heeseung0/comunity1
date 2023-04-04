@@ -1,3 +1,7 @@
+.thisURL {
+    display: none;
+}
+
 .board_header {
     margin: 0px 0px 20px 0px;
 
@@ -154,6 +158,16 @@ tbody tr .category_imple span {
 }
 
 .board_footer_others {
+    text-align: center;
+}
+
+.board_footer_others_search {
+    display: flex;
+
+    width: auto;
+    height: auto;
+
+    justify-content: center;
     text-align: center;
 }
 

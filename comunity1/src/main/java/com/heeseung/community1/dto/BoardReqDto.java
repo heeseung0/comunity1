@@ -18,4 +18,5 @@ public class BoardReqDto {
     private LocalDateTime date_update;
     private int view;
     private String contents;
+    private int replyCount;
 }

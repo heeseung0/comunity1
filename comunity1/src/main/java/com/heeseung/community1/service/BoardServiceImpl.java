@@ -78,7 +78,33 @@ public class BoardServiceImpl implements BoardService {
     public List<BoardReqDto> getPosts(String boardURL) throws Exception {
         List<BoardReqDto> reqDtoList = new ArrayList<BoardReqDto>();
 
-        boardRepository.gets(getTableNames(boardURL)).forEach(board -> {
+        boardRepository.gets(getTableNames(boardURL), boardURL).forEach(board -> {
+            reqDtoList.add(board.toDto());
+        });
+
+        return reqDtoList;
+    }
+
+    @Override
+    public List<BoardReqDto> getPosts(String boardURL, int type, int searchType, String searchLike) throws Exception {
+        List<BoardReqDto> reqDtoList = new ArrayList<BoardReqDto>();
+        String likeTitle = "";
+        String likeWriter = "";
+        String likeContents = "";
+
+        switch(searchType){
+            case 0:
+                likeTitle = searchLike;
+                break;
+            case 1:
+                likeWriter = searchLike;
+                break;
+            case 2:
+                likeContents = searchLike;
+                break;
+        }
+
+        boardRepository.gets_search(getTableNames(boardURL), type, likeTitle, likeWriter, likeContents).forEach(board -> {
             reqDtoList.add(board.toDto());
         });
 

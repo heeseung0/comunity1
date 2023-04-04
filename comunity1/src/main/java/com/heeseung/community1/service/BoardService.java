@@ -11,6 +11,7 @@ public interface BoardService {
 
     public List<BoardReqDto> getRecentPosts(String boardURL, String count) throws Exception;
     public List<BoardReqDto> getPosts(String boardURL) throws Exception;
+    public List<BoardReqDto> getPosts(String boardURL, int type, int searchType, String searchLike) throws Exception;
     public BoardReqDto getPost(String boardURL,int postNum) throws Exception;
 
     public int addViewCount(String boardURL, int postNum) throws Exception;

@@ -17,6 +17,7 @@ public class Board {
     private LocalDateTime date_update;
     private int view;
     private String contents;
+    private int replyCount;
 
     public BoardReqDto toDto(){
         return BoardReqDto.builder()
@@ -28,6 +29,7 @@ public class Board {
                 .date_update(this.date_update)
                 .view(this.view)
                 .contents(this.contents)
+                .replyCount(this.replyCount)
                 .build();
     }
 }
