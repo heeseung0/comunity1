@@ -1,6 +1,7 @@
 package com.heeseung.community1.service;
 
 import com.heeseung.community1.dto.RecentPostRespDto;
+import com.heeseung.community1.dto.RecentReplyRespDto;
 import com.heeseung.community1.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,16 @@ public class IndexServiceImpl implements IndexService{
             dto.add(domain.toDto());
         });
 
+        return dto;
+    }
+
+    @Override
+    public List<RecentReplyRespDto> getRecentReply() throws Exception {
+        List<RecentReplyRespDto> dto = new ArrayList<>();
+
+        boardRepository.recentReply().forEach(domain -> {
+            dto.add(domain.toDto());
+        });
         return dto;
     }
 }

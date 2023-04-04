@@ -13,7 +13,14 @@ public class IndexApi {
     private final IndexService indexService;
 
     @GetMapping("/recentPost")
-    public ResponseEntity<?> getReply() throws Exception {
+    public ResponseEntity<?> getRecentPosts() throws Exception {
         return ResponseEntity.ok().body(new CMRespDto<>("getRecentPost",indexService.getRecentPost()));
     }
+
+    @GetMapping("/recentReply")
+    public ResponseEntity<?> getRecentReplys() throws Exception {
+        return ResponseEntity.ok().body(new CMRespDto<>("getRecentReply",indexService.getRecentReply()));
+    }
+
+
 }

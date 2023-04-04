@@ -104,7 +104,7 @@ public class BoardServiceImpl implements BoardService {
                 break;
         }
 
-        boardRepository.gets_search(getTableNames(boardURL), type, likeTitle, likeWriter, likeContents).forEach(board -> {
+        boardRepository.gets_search(getTableNames(boardURL), type, likeTitle, likeWriter, likeContents, boardURL).forEach(board -> {
             reqDtoList.add(board.toDto());
         });
 

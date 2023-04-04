@@ -28,7 +28,7 @@
 
     </update>
 
-    <select id="getsRecentCount" resultType="com.heeseung.community1.domain.Board">
+    <select id="getsRecentCount" resultType="com.heeseung.community1.domain.BoardBasic">
         select board.id,
                board.type,
                board.title,
@@ -69,7 +69,13 @@
                board.date_post,
                board.date_update,
                board.view,
-               board.contents
+               board.contents,
+               (
+                   select count(*)
+                   from reply re
+                   where re.board = #{board}
+                     and   re.postnum = board.id
+               )as replyCount
         from ${table} board
         where board.type = #{type}
         and     board.title like "%${likeTitle}%"
@@ -119,6 +125,15 @@
             UNION ALL
             (SELECT *, 'Notice' AS tblName FROM post_notice ORDER BY id DESC LIMIT 5)
         ) qry ORDER BY date_post DESC LIMIT 5;
+    </select>
+
+    <select id="recentReply" resultType="com.heeseung.community1.domain.RecentReply">
+        SELECT
+            re.contents as 'contents',
+            re.board as 'board',
+            re.postnum as 'postNum'
+        FROM reply re
+        ORDER BY date_post DESC LIMIT 5;
     </select>
 
 </mapper>

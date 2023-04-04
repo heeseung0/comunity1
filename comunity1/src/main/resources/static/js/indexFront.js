@@ -40,6 +40,8 @@ window.addEventListener("load", () => {
             //이하 list 내부 get
             if (index == 0) {
                 recentPost();
+            }else if(index == 1){
+                recentReply();
             }
         });
     });
@@ -69,6 +71,30 @@ function recentPost(){
 
                     inner.innerHTML = `
                         <a href="/${data.tblName}/${data.id}">${data.title}</a>
+                    `;
+                }
+            });
+        }, error: (error) => {
+            console.log(error);
+        }
+    });
+}
+
+function recentReply(){
+    const tab_pane_content = document.querySelectorAll(".document_content");
+
+    $.ajax({
+        async: false,
+        type: "get",
+        url: "/api/index/recentReply",
+        success: (response) => {
+            console.log(response);
+            tab_pane_content.forEach((inner, index) => {
+                if (5 <= index && index < 10) {
+                    let data = response.data[index-5];
+
+                    inner.innerHTML = `
+                        <a href="/${data.board}/${data.postNum}">${data.contents}</a>
                     `;
                 }
             });
