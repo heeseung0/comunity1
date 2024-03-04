@@ -18,6 +18,10 @@ window.addEventListener('load', () => {
             case 'Free':
                 postGet('Free');
                 break;
+            case 'qna':
+            case 'QNA':
+                postGet('QNA');
+                break;
         }
     }
 })
@@ -30,6 +34,9 @@ function postGet(thisURL) { //중복 변수,함수 제거 목적으로 하나로
             break;
         case 'Free':
             titleName = "자유게시판";
+            break;
+        case 'QNA':
+            titleName = "질문게시판";
             break;
     }
 
@@ -107,7 +114,8 @@ function paint(response, thisURL, titleName){
     let nowParam = "";
     const searchType = {
         Notice: ['알림','업뎃','중요'],
-        Free: ['자유']
+        Free: ['자유'],
+        QNA: ['질문']
     };
 
     if(searchParams != null) {
@@ -238,6 +246,13 @@ function paint(response, thisURL, titleName){
                 case 1:
                     type_class = "category_free";
                     type_content = "자유";
+                    break;
+            }
+        } else if(thisURL == 'QNA') {
+            switch (post.type) {
+                case 1:
+                    type_class = "category_qna";
+                    type_content = "질문";
                     break;
             }
         }
@@ -375,7 +390,15 @@ function replaceDate(rawText) {
 function btnEvent_MD(boardURL, postID) {
     $(document).ready(function () {
         $('.postModify').click(function () {
-            location.href += "/PostModify";
+            let replaceUrl = [];
+            replaceUrl[0] = location.href.substring(0, location.href.indexOf("?"));
+            replaceUrl[1] = location.href.substring(location.href.indexOf("?")+1);
+            if(replaceUrl[0] == ''){
+                location.href += "/PostModify";
+            }else{
+                location.href = replaceUrl[0] + "/PostModify?" + replaceUrl[1];
+            }
+
         });
 
         $('.postDelete').click(function () {

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns: th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>질문게시판 글 작성</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/newAccount.css">
+    <link rel="stylesheet" href="/static/css/board.css">
+    <!-- 클래식 에디터 -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
+    <style>
+        .ck-editor__editable {
+            height: 400px;
+        }
+
+        .ck-content {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <aside th:replace="/index :: .aside-left"></aside>
+    <div class="seung-wrapper">
+        <nav th:replace="/index :: .nav-main"></nav>
+        <div class="wrapper-contents">
+            <!-- 여기부터 페이지마다 다름 -->
+            <div class="board_header">
+                <!-- 게시판 마다 다르게 설정 -->
+                <h3 class="header_title">질문게시판</h3>
+            </div>
+            <form method="post" action="/QNA/NewPost">
+                <div>
+                    <span class="newPost_type_Span">타입</span>
+                    <select name="type" class="newPost_type">
+                        <option value="1">질문</option>
+                    </select>
+                </div>
+                <textarea name="title" class="newPost_title" placeholder="제목을 입력하세요." required></textarea>
+                <textarea name="contents" id="editor"></textarea>
+                <button type="submit" class="account-submit">등록</button>
+            </form>
+            <!-- 여기까지 페이지마다 다름 -->
+        </div>
+        <div th:replace="/index :: .wrapper-aside-right"></div>
+    </div>
+</div>
+<script src="/static/js/indexFront.js"></script>
+<script src="/static/js/board/newPost.js"></script>
+</body>
+</html>

@@ -5,11 +5,13 @@ import com.heeseung.community1.domain.BoardReply;
 import com.heeseung.community1.dto.*;
 import com.heeseung.community1.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
@@ -26,6 +28,10 @@ public class BoardServiceImpl implements BoardService {
             case "free":
             case "Free":
                 tableName = "post_free";
+                break;
+            case "qna":
+            case "QNA":
+                tableName = "post_qna";
                 break;
         }
 

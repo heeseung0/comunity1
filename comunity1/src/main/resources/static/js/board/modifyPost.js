@@ -38,7 +38,11 @@ window.addEventListener('load', () => {
             data: JSON.stringify(boardModifyReqDto),
             contentType: "application/json",
             success: (response) => {
-                location.href = "/" + boardURL + "/" + postID;
+                let replaceUrl = [];
+                replaceUrl[0] = location.href.substring(0, location.href.indexOf("?"));
+                replaceUrl[1] = location.href.substring(location.href.indexOf("?")+1);
+
+                location.href = "/" + boardURL + "/" + postID + "?" + replaceUrl[1];
             }, error: (error) => {
                 console.log(error);
             }

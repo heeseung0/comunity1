@@ -2,11 +2,22 @@
 <html lang="ko" xmlns: th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>질문게시판</title>
+    <title>질문게시판 수정</title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/newAccount.css">
     <link rel="stylesheet" href="/static/css/board.css">
+    <!-- 클래식 에디터 -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
+    <style>
+        .ck-editor__editable {
+            height: 400px;
+        }
+
+        .ck-content {
+            font-size: 12px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -16,33 +27,24 @@
         <div class="wrapper-contents">
             <!-- 여기부터 페이지마다 다름 -->
             <div class="board_header">
-                <span th:if="${session.getLoginRole != 'anonymousUser'}">
-                    <a class="btn_write" href="/QNA/newPost">글쓰기</a>
-                </span>
+                <!-- 게시판 마다 다르게 설정 -->
                 <h3 class="header_title">질문게시판</h3>
             </div>
-            <table class="board_body_table">
-                <thead>
-                <tr>
-                    <th scope="col">번호</th>
-                    <th scope="col">분류</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">글쓴이</th>
-                    <th scope="col">날짜</th>
-                    <th scope="col">조회수</th>
-                </tr>
-                </thead>
-                <tbody class="jsTarget_tbody"></tbody>
-            </table>
-            <div class="board_footer_others">
-                검색, 페이징, 쓰기버튼
+            <div>
+                <span class="newPost_type_Span">타입</span>
+                <select name="type" class="newPost_type">
+                    <option value="1">질문</option>
+                </select>
             </div>
+            <textarea name="title" class="newPost_title" placeholder="제목을 입력하세요." required></textarea>
+            <textarea name="contents" id="editor"></textarea>
+            <button type="button" class="account-submit">수정</button>
             <!-- 여기까지 페이지마다 다름 -->
         </div>
         <div th:replace="/index :: .wrapper-aside-right"></div>
     </div>
 </div>
 <script src="/static/js/indexFront.js"></script>
-<script src="/static/js/board/post/posts.js"></script>
+<script src="/static/js/board/modifyPost.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 800
   address: 0.0.0.0
 
 spring:
@@ -8,9 +8,9 @@ spring:
 
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://database-1.citk838y6vgk.ap-northeast-2.rds.amazonaws.com:3306/community1
-    username: admin
-    password: 1q2w3e4r
+    url: jdbc:mariadb://127.0.0.1:3306/community1
+    username: community1
+    password: g383wE
 
   security:
     user:

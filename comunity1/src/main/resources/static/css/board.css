@@ -164,6 +164,8 @@ tbody tr .category_imple span {
 .board_footer_others_search {
     display: flex;
 
+    margin-bottom : 5px;
+
     width: auto;
     height: auto;
 

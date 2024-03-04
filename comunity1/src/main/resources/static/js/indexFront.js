@@ -8,7 +8,7 @@ window.addEventListener("load", () => {
 
     const widgetNotice = document.querySelector(".widgetNotice");
     const widgetEvent = document.querySelector(".widgetEvent");
-    const widgetFAQ = document.querySelector(".widgetFAQ");
+    const widgetQNA = document.querySelector(".widgetQNA");
     const widgetFree = document.querySelector(".widgetFree");
     const widgetFile = document.querySelector(".widgetFile");
     const widgetPoint = document.querySelector(".widgetPoint");
@@ -50,6 +50,7 @@ window.addEventListener("load", () => {
     if(location.pathname == "/") {
         getWidget("Notice", widgetNotice);
         getWidget("Free", widgetFree);
+        getWidget("QNA", widgetQNA);
     }
 });
 
@@ -66,11 +67,11 @@ function recentPost(){
         url: "/api/index/recentPost",
         success: (response) => {
             tab_pane_content.forEach((inner, index) => {
-                if (0 <= index && index < 5) {
+                if (0 <= index && index < 5 && response.data[index] != null) {
                     let data = response.data[index];
 
                     inner.innerHTML = `
-                        <a href="/${data.tblName}/${data.id}">${data.title}</a>
+                        <a href="/${data?.tblName}/${data?.id}">${data?.title}</a>
                     `;
                 }
             });
